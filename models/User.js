@@ -11,6 +11,12 @@ const UserSchema = new Schema(
     city: { type: String },
     country: { type: String },
     admin: { type: Boolean, default: false },
+    FullName:{type:String},
+    GraduationYear:{type:String},
+    MobileNumber:{type:String},
+    Degree:{type:String},
+    Branch:{type:String},
+    
 
     password: {
       type: String,

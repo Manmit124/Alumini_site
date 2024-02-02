@@ -11,10 +11,12 @@
   "dependencies": {
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "@sendgrid/mail": "^8.1.0",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "firebase": "^10.7.2",
     "lucide-react": "^0.312.0",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.0",
