@@ -9,7 +9,6 @@ import {
 
 import Image from "next/image";
 
-
 import { useSession } from "next-auth/react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -23,7 +22,6 @@ const ImageUploader = ({ image, setImageUrl, setimage }) => {
   const { toast } = useToast();
   const session = useSession();
   const userData = session.data?.user;
-
   let userImage = userData?.image;
 
   useEffect(() => {
@@ -47,7 +45,7 @@ const ImageUploader = ({ image, setImageUrl, setimage }) => {
       },
       (error) => {
         console.log(error);
-        setImageError(true)
+        setImageError(true);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref)
@@ -77,34 +75,42 @@ const ImageUploader = ({ image, setImageUrl, setimage }) => {
   };
 
   return (
-    <div className="flex-col p-2 mb-0 rounded-lg">
-      <Image
-        // image ? URL.createObjectURL(image) : userImage
-        src={formData.profilePicture || userImage}
-        height={100}
-        width={100}
-        alt="image of special"
-        className="object-cover bg-gray-500 border-gray-500 mb-2"
-      />
-      {!image && (
-        <div className="mb-1 bg-gray-200 p-4 text-gray-500 rounded-lg">
-          No image{" "}
-        </div>
-      )}
-      {ImageError ? (
-        <span>Error uploading image</span>
-      ): ""}
-      <Label className="cursor-pointer" variant="outline">
-        <Input
-          type="file"
-          className="hidden"
-          accept="image/*"
-          onChange={(e) => setimage(e.target.files[0])}
-        />
-        <span className="block border rounded-lg p-1 text-center">
-          Change photo
-        </span>
-      </Label>
+    <div className=" flex p-2 mb-0 rounded-lg items-center">
+      <div>
+        {image ? (
+          <Image
+            // image ? URL.createObjectURL(image) : userImage
+            src={formData.profilePicture || image}
+            height={100}
+            width={100}
+            alt="image of special"
+            className="object-cover bg-gray-500 border-gray-500 mb-2"
+          />
+        ) : (
+          <div className="mb-1 bg-gray-200 p-4 text-gray-500 rounded-lg">
+            <Image
+              src={userImage || "/profile/nouser.png"}
+              height={100}
+              width={100}
+              alt="no user image"
+            />
+          </div>
+        )}
+      </div>
+      <div>
+        {ImageError ? <span>Error uploading image</span> : ""}
+        <Label className="cursor-pointer" variant="outline">
+          <Input
+            type="file"
+            className="hidden"
+            accept="image/*"
+            onChange={(e) => setimage(e.target.files[0])}
+          />
+          <span className="  text-white block border rounded-lg p-1 text-center">
+            Change photo
+          </span>
+        </Label>
+      </div>
     </div>
   );
 };

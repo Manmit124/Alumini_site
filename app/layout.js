@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/utils/AuthProvider";
+import StarCanvas from "./_components/Home/StarBackground";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+      <body className={`${inter.className} bg-[#030014]  `}>
+        <AuthProvider>
+        {/* <StarCanvas/> */}
+        {children}
+        </AuthProvider>
       </body>
     </html>
   );
