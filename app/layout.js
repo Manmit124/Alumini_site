@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${inter.className} bg-[#030014]  `}>
         <AuthProvider>
-        {/* <StarCanvas/> */}
+        <StarCanvas/>
         {children}
         </AuthProvider>
       </body>

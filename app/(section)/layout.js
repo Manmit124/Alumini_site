@@ -5,7 +5,7 @@ export default function Section({children}){
     return (
         <>
       <Navbar/>
-        <StarCanvas/>
+        {/* <StarCanvas/> */}
             {children}
         </>
     )

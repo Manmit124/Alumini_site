@@ -1,5 +1,4 @@
 "use client";
-import WorkExperienceForm from "@/app/_components/profile/WorkExperince";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,39 +6,30 @@ import { toast } from "@/components/ui/use-toast";
 import ImageUploader from "@/utils/Imageuploader";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-const fetchUserProfile = async (setters) => {
-  try {
-    const response = await fetch("/api/profile");
-    if (response.ok) {
-      const data = await response.json();
-      setters.forEach(({ state, setter, key }) => setter(data[key] || state));
-    } else {
-      console.error(
-        "Error fetching updated profile data:",
-        response.status,
-        response.statusText
-      );
-    }
-  } catch (error) {
-    console.error("Error fetching updated profile data:", error);
-  }
-};
 
 const Page = () => {
-  const [FullName, setFullName] = useState();
-  const [formData, setformData] = useState({});
-  const [GraduationYear, setGraduationYear] = useState("");
-  const [MobileNumber, setMobileNumber] = useState();
-  const [Degree, setDegree] = useState("");
-  const [Branch, setBranch] = useState();
-  const [workExperiences, setWorkExperiences] = useState([]);
+ 
+  const [formData, setformData] = useState({
+    FullName: "",
+    GraduationYear: "",
+    MobileNumber: "",
+    Degree: "",
+    Branch: "",
+    image: "",
+  });
+
+
   const [image, setimage] = useState(undefined);
   const session = useSession();
   const userData = session.data?.user;
   const { status } = session;
 
   const setImageUrl = (url) => {
-    setformData((prevFormData) => ({ ...prevFormData, profilePicture: url }));
+    setformData((prevFormData) => ({ ...prevFormData, image: url }));
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setformData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleProfilesubmit = async (e) => {
@@ -47,14 +37,7 @@ const Page = () => {
     const response = await fetch("/api/profile", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        FullName: FullName,
-        GraduationYear: GraduationYear,
-        MobileNumber: MobileNumber,
-        Degree: Degree,
-        Branch: Branch,
-        image: formData.profilePicture,
-      }),
+      body: JSON.stringify(formData),
     });
     if (response.ok) {
       return toast({
@@ -69,23 +52,24 @@ const Page = () => {
     }
   };
   useEffect(() => {
-    console.log(session)
+    console.log(session);
     if (status === "authenticated") {
-      fetchUserProfile([
-        { state: FullName, setter: setFullName, key: "FullName" },
-        {
-          state: GraduationYear,
-          setter: setGraduationYear,
-          key: "GraduationYear",
-        },
-        { state: MobileNumber, setter: setMobileNumber, key: "MobileNumber" },
-        { state: Degree, setter: setDegree, key: "Degree" },
-        { state: Branch, setter: setBranch, key: "Branch" },
-        { state: image, setter: setimage, key: "image" },
-      ]);
-      
+      fetchUserProfile();
     }
-  }, [session, status]);
+  }, [status]);
+  const fetchUserProfile = async () => {
+    try {
+      const response = await fetch("/api/profile");
+      if (response.ok) {
+        const data = await response.json();
+        setformData((prevData) => ({ ...prevData, ...data }));
+      } else {
+        console.log("Eror fetching the upldated image ");
+      }
+    } catch (error) {
+      console.error("Error fetching updated profile data:", error);
+    }
+  };
 
   // const validateMobileNumber = (value) => {
 
@@ -105,9 +89,11 @@ const Page = () => {
                 Enter your Full Name
               </Label>
               <Input
-                value={FullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={formData.FullName}
+                onChange={handleChange}
                 type="text"
+                name="FullName"
+                id="FullName"
                 placeholder="Enter your full name"
                 className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
               />
@@ -117,7 +103,7 @@ const Page = () => {
                 Upload Your Profile Photo
               </Label>
               <ImageUploader
-                image={image}
+                image={formData.image}
                 setImageUrl={setImageUrl}
                 setimage={setimage}
               />
@@ -127,8 +113,9 @@ const Page = () => {
                 Graduation Year
               </Label>
               <Input
-                value={GraduationYear}
-                onChange={(e) => setGraduationYear(e.target.value)}
+                value={formData.GraduationYear}
+                onChange={handleChange}
+                name="GraduationYear"
                 type="number"
                 placeholder="Enter your Graduation Year"
                 className="w-full border border-gray-300  rounded-md focus:outline-none focus:border-blue-500"
@@ -143,8 +130,9 @@ const Page = () => {
               </Label>
               <Input
                 id="contactInfo"
-                value={MobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
+                value={formData.MobileNumber}
+                onChange={handleChange}
+                name="MobileNumber"
                 type="text"
                 placeholder="Enter your Mobile Number"
                 className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
@@ -155,18 +143,20 @@ const Page = () => {
             </Label>
             <div className="flex  flex-col ">
               <select
-                name="degree"
-                value={Degree}
-                onChange={(e) => setDegree(e.target.value)}
+                name="Degree"
+                value={formData.Degree}
+                onChange={handleChange}
                 className=" p-2 rounded-md"
               >
                 <option value="">Degree</option>
                 <option value="B.Tech">B.Tech</option>
                 <option value="B.E">B.E</option>
               </select>
-              <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                Selected Degree is {Degree}
-              </Label>
+              {formData.Degree && (
+                <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+                  Selected Degree is {formData.Degree}
+                </Label>
+              )}
             </div>
             <div>
               <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
@@ -174,9 +164,9 @@ const Page = () => {
               </Label>
               <div className="flex  flex-col  cursor-pointer ">
                 <select
-                  name="degree"
-                  onChange={(e) => setBranch(e.target.value)}
-                  value={Branch}
+                  name="Branch"
+                  value={formData.Branch}
+                  onChange={handleChange}
                   className=" p-2 rounded-md"
                 >
                   <option value="">Branch</option>
@@ -186,17 +176,18 @@ const Page = () => {
                   <option value="Mechanical">Mechanical</option>
                   <option value="Civil">Civil</option>
                 </select>
-                <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                  Selected Branch is {Branch}
-                </Label>
+                {formData.Branch && (
+                  <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+                    Selected Branch is {formData.Branch}
+                  </Label>
+                )}
               </div>
               <div></div>
             </div>
             <div>
-            <Button type="submit">Submit</Button>
+              <Button type="submit">Submit</Button>
+            </div>
           </div>
-          </div>
-         
         </div>
       </form>
     </div>

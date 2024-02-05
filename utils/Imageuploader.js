@@ -89,7 +89,7 @@ const ImageUploader = ({ image, setImageUrl, setimage }) => {
         ) : (
           <div className="mb-1 bg-gray-200 p-4 text-gray-500 rounded-lg">
             <Image
-              src={userImage || "/profile/nouser.png"}
+              src={ "/profile/nouser.png"}
               height={100}
               width={100}
               alt="no user image"
