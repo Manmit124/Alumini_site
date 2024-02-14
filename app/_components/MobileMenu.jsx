@@ -50,6 +50,18 @@ export default function MobileMenu() {
 
   return (
     <>
+    <div  className=" flex justify-between ">
+    <Link href="/" onClick={onToggleNav} className=" flex flex-row  items-center justify-center md:hidden">
+          <Image
+            src={"/logo.png"}
+            width={50}
+            height={50}
+            className=" "
+            alt="logo of company Quilex"
+          />
+           <span className=" text-2xl  ml-[-10px]  font-bold">uilex</span>
+          </Link>
+    
       <button
         aria-label="Toggle Menu"
         onClick={onToggleNav}
@@ -57,8 +69,9 @@ export default function MobileMenu() {
       >
         <RxHamburgerMenu className="text-xl text-slate-200" />
       </button>
+      </div>
       <div
-        className={`md:hidden fixed left-0 top-0 z-10 h-full w-full transform duration-[600ms] ease-[cubic-bezier(0.7,0,0,1)] bg-[#171717]  dark:bg-zinc-900  ${
+        className={`md:hidden fixed left-0 top-0 z-10 h-full w-full transform duration-[600ms] ease-[cubic-bezier(0.7,0,0,1)]  bg-white    ${
           navShow ? "translate-x-0 rounded-none" : "translate-x-full"
         }`}
       >

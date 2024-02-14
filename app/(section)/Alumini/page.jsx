@@ -35,11 +35,12 @@ const Page = () => {
                   height={120}
                   alt="Users image"
                   src={Alumini?.image}
-                  className="   w-22 h-22 "
+                  className="    object-cover "
                 />
               </div>
               <div className=" flex flex-col ">
                 <h1 className=" text-2xl text-white">{Alumini.FullName}</h1>
+                <p className=" text-white">{Alumini.GraduationYear}</p>
                 <p className=" text-white   text-sm t">
                   {" "}
                   Passionate Fullstack web developer is with great vision to
