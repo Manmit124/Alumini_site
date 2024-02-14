@@ -39,7 +39,7 @@ const HeroContent = () => {
           variants={slideInFromLeft(0.8)}
           className="text-lg text-gray-400 my-5 max-w-[600px]"
         >
-          Our project aims to bridge this gap by creating 'Alumni Nexus, ' a
+          Our project aims to bridge this gap by creating Alumni Nexus,  a
           platform where alumni can showcase their profiles platform where
           alumni can showcase their profiles
         </motion.p>
