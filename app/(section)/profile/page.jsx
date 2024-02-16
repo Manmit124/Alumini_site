@@ -54,7 +54,11 @@ const Page = () => {
 
               <CardContent className="  gap-4  text-white  flex flex-row  ">
               <span className=" text-white text-2xl ">  Works Hard like Every waking Hour</span>
+              <Link href={"/profile/edit"}>
+                
+
                 <IoSettingsOutline className=" mb-2  text-4xl text-white" />
+              </Link>
               </CardContent>
               {/* <CardFooter className="  mb-2 flex justify-end"> <IoSettingsOutline className=" mb-2  text-2xl text-white" /></CardFooter> */}
             </Card>

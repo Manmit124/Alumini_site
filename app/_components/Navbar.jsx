@@ -39,7 +39,8 @@ const Navbar = () => {
     <>
 
 <MobileMenu/>
-    <div className="w-full lg:h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md  z-50 px-10 hidden md:flex lg:flex ">
+{/* shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md  shadow-lg*/}
+    <div className="w-full lg:h-[65px] fixed top-0   z-50 px-10 hidden md:flex lg:flex ">
       <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
         <Link href={"/"} className=" h-auto w-auto flex  flex-row items-center">
         <div className=" mt-2">
