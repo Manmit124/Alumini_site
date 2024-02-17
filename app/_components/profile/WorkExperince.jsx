@@ -1,71 +1,179 @@
-// components/WorkExperienceForm.js
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import React from "react";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import React, { useState } from 'react';
-
-const WorkExperienceForm = ({ onSave }) => {
-  const [formData, setFormData] = useState({
-    companyName: '',
-    position: '',
-    startDate: '',
-    endDate: '',
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSave = () => {
-    onSave(formData);
-    setFormData({
-      companyName: '',
-      position: '',
-      startDate: '',
-      endDate: '',
-    });
-  };
-
+const WorkExperince = ({
+  experiences,
+  handleExperienceChange,
+  handleAddExperience,
+}) => {
   return (
-    <div>
-      <h2 className=' text-slate-200'>Add Work Experience</h2>
-      <div className=' flex flex-col gap-2 '>
-        <Input
-          type="text"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
-          placeholder="Company Name"
-        />
-        <Input
-          type="text"
-          name="position"
-          value={formData.position}
-          onChange={handleChange}
-          placeholder="Position"
-        />
-        <Input
-          type="text"
-          name="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
-          placeholder="Start Date"
-        />
-        <Input
-          type="text"
-          name="endDate"
-          value={formData.endDate}
-          onChange={handleChange}
-          placeholder="End Date"
-        />
-        <Button onClick={handleSave}>Save</Button>
-      </div>
-    </div>
+    <>
+    
+      {experiences.map((experience, index) => (
+        <div  key={index} className="grid md:grid-cols-2 mx-auto">
+      
+          <div
+           
+            className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3"
+          >
+            <div className="form-control w-full ">
+              <Label htmlFor={`jobTitle${index}`} className="label">
+                <span className="text-white">Job Title</span>
+              </Label>
+              <div className="flex items-center gap-3">
+                <Input
+                  type="text"
+                  name="jobTitle"
+                  id={`jobTitle${index}`}
+                  value={experience.jobTitle}
+                  onChange={(e) => handleExperienceChange(e, index)}
+                  placeholder="Enter your job title"
+                  className="bg-transparent text-white  w-full max-w-lg"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+            <div className=" w-full">
+              <Label htmlFor={`company${index}`} className="label">
+                <span className="text-white">Company Name</span>
+              </Label>
+              <div className="flex items-center gap-3">
+                <Input
+                  type="text"
+                  name="company"
+                  id={`company${index}`}
+                  value={experience.company}
+                  onChange={(e) => handleExperienceChange(e, index)}
+                  placeholder="Enter your company name"
+                  className="bg-transparent text-whitew-full max-w-lg"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+            <div className=" w-full">
+              <Label htmlFor={`industry${index}`} className="label">
+                <span className="text-white">Industry</span>
+              </Label>
+              <div className="flex items-center gap-3">
+                <Input
+                  type="text"
+                  name="industry"
+                  id={`industry${index}`}
+                  value={experience.industry}
+                  onChange={(e) => handleExperienceChange(e, index)}
+                  placeholder="Enter your industry"
+                  className="bg-transparent text-white w-full max-w-lg"
+                />
+              </div>
+            </div>
+</div>
+
+<div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="f w-full  ">
+              <Label htmlFor={`startEndYear${index}`} className="label">
+                <span className="text-white">Start and end year</span>
+              </Label>
+              <div className="flex items-center gap-3">
+                <Input
+                  type="text"
+                  name="startEndYear"
+                  id={`startEndYear${index}`}
+                  value={experience.startEndYear}
+                  onChange={(e) => handleExperienceChange(e, index)}
+                  placeholder="Enter start and end year"
+                  className="bg-transparent text-white w-full max-w-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      <Button onClick={handleAddExperience}>Add Experience</Button>
+
+      {/* <div className="grid md:grid-cols-2 mx-auto">
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="form-control w-full ">
+                <Label htmlFor="phoneNumber" className="label">
+                  <span className=" text-white">Job Title </span>
+                </Label>
+                <div className="flex  items-center gap-3 ">
+                  <Input
+                    type="text"
+                    name="job title"
+                    id="job title"
+                    //   value={formData.phoneNumber.data}
+                    //   onChange={handleInputChangeObjData}
+                    placeholder="Enter your city"
+                    className="input input-bordered w-full max-w-lg "
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="f w-full  ">
+                <Label htmlFor="dateOfBirth" className="label">
+                  <span className=" text-white">Company Name</span>
+                </Label>
+                <div className="flex  items-center gap-3">
+                  <Input
+                    type="text"
+                    id="company"
+                    name="company"
+                    //   value={formData.dateOfBirth.data}
+                    //   onChange={handleInputChangeObjData}
+                    placeholder="Enter Your Current Job Role"
+                    className=" input-w-full max-w-lg "
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="f w-full  ">
+                <Label htmlFor="dateOfBirth" className="label">
+                  <span className=" text-white">Industry</span>
+                </Label>
+                <div className="flex  items-center gap-3">
+                  <Input
+                    type="text"
+                    id="industry"
+                    name="industry"
+                    //   value={formData.dateOfBirth.data}
+                    //   onChange={handleInputChangeObjData}
+                    placeholder="Enter Your Current Job Role"
+                    className=" input-w-full max-w-lg "
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="f w-full  ">
+                <Label htmlFor="dateOfBirth" className="label">
+                  <span className=" text-white">Start and end year</span>
+                </Label>
+                <div className="flex  items-center gap-3">
+                  <Input
+                    type="text"
+                    id="industry"
+                    name="industry"
+                    //   value={formData.dateOfBirth.data}
+                    //   onChange={handleInputChangeObjData}
+                    placeholder="Enter Your Current Job Role"
+                    className=" input-w-full max-w-lg "
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
+            <Button>Add</Button> */}
+    </>
   );
 };
 
-export default WorkExperienceForm;
+export default WorkExperince;

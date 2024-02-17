@@ -1,4 +1,5 @@
 "use client";
+import EditProfile from "@/app/_components/profile/EditProfile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -80,117 +81,120 @@ const Page = () => {
   // };
 
   return (
-    <div className="">
-      <form className=" max-w-xl mx-auto  " onSubmit={handleProfilesubmit}>
-        <div className="flex flex-col  lg:flex-row gap-2 ">
-          <div className="grow p-3">
-            <div className="mb-4 ">
-              <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                Enter your Full Name
-              </Label>
-              <Input
-                value={formData.FullName}
-                onChange={handleChange}
-                type="text"
-                name="FullName"
-                id="FullName"
-                placeholder="Enter your full name"
-                className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                Upload Your Profile Photo
-              </Label>
-              <ImageUploader
-                image={formData.image}
-                setImageUrl={setImageUrl}
-                setimage={setimage}
-              />
-            </div>
-            <div className="mb-4">
-              <Label className="block leading-normal text-muted-foreground  sm:leading-7 mt-2 mb-2">
-                Graduation Year
-              </Label>
-              <Input
-                value={formData.GraduationYear}
-                onChange={handleChange}
-                name="GraduationYear"
-                type="number"
-                placeholder="Enter your Graduation Year"
-                className="w-full border border-gray-300  rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <div className=" mb-4">
-              <Label
-                htmlFor="contactInfo"
-                className="block mb-1 leading-normal text-muted-foreground sm:leading-7"
-              >
-                Mobile Number
-              </Label>
-              <Input
-                id="contactInfo"
-                value={formData.MobileNumber}
-                onChange={handleChange}
-                name="MobileNumber"
-                type="text"
-                placeholder="Enter your Mobile Number"
-                className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
-              />
-            </div>
-            <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-              Select Your Degree
-            </Label>
-            <div className="flex  flex-col ">
-              <select
-                name="Degree"
-                value={formData.Degree}
-                onChange={handleChange}
-                className=" p-2 rounded-md"
-              >
-                <option value="">Degree</option>
-                <option value="B.Tech">B.Tech</option>
-                <option value="B.E">B.E</option>
-              </select>
-              {formData.Degree && (
-                <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                  Selected Degree is {formData.Degree}
-                </Label>
-              )}
-            </div>
-            <div>
-              <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                Select Your Branch
-              </Label>
-              <div className="flex  flex-col  cursor-pointer ">
-                <select
-                  name="Branch"
-                  value={formData.Branch}
-                  onChange={handleChange}
-                  className=" p-2 rounded-md"
-                >
-                  <option value="">Branch</option>
-                  <option value="Computer Science">Computer Science Eng</option>
-                  <option value="ENTC">ENTC</option>
-                  <option value="Electrical">Electrical</option>
-                  <option value="Mechanical">Mechanical</option>
-                  <option value="Civil">Civil</option>
-                </select>
-                {formData.Branch && (
-                  <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
-                    Selected Branch is {formData.Branch}
-                  </Label>
-                )}
-              </div>
-              <div></div>
-            </div>
-            <div>
-              <Button type="submit">Submit</Button>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+    // <div className="  ">
+    //   <form className=" max-w-xl mx-auto  bg-[#2a2e37] " onSubmit={handleProfilesubmit}>
+    //     <div className="flex flex-col  lg:flex-row gap-2 ">
+    //       <div className="grow p-3">
+    //         <div className="mb-4 ">
+    //           <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //             Enter your Full Name
+    //           </Label>
+    //           <Input
+    //             value={formData.FullName}
+    //             onChange={handleChange}
+    //             type="text"
+    //             name="FullName"
+    //             id="FullName"
+    //             placeholder="Enter your full name"
+    //             className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
+    //           />
+    //         </div>
+    //         <div>
+    //           <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //             Upload Your Profile Photo
+    //           </Label>
+    //           <ImageUploader
+    //             image={formData.image}
+    //             setImageUrl={setImageUrl}
+    //             setimage={setimage}
+    //           />
+    //         </div>
+    //         <div className="mb-4">
+    //           <Label className="block leading-normal text-muted-foreground  sm:leading-7 mt-2 mb-2">
+    //             Graduation Year
+    //           </Label>
+    //           <Input
+    //             value={formData.GraduationYear}
+    //             onChange={handleChange}
+    //             name="GraduationYear"
+    //             type="number"
+    //             placeholder="Enter your Graduation Year"
+    //             className="w-full border border-gray-300  rounded-md focus:outline-none focus:border-blue-500"
+    //           />
+    //         </div>
+    //         <div className=" mb-4">
+    //           <Label
+    //             htmlFor="contactInfo"
+    //             className="block mb-1 leading-normal text-muted-foreground sm:leading-7"
+    //           >
+    //             Mobile Number
+    //           </Label>
+    //           <Input
+    //             id="contactInfo"
+    //             value={formData.MobileNumber}
+    //             onChange={handleChange}
+    //             name="MobileNumber"
+    //             type="text"
+    //             placeholder="Enter your Mobile Number"
+    //             className="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500"
+    //           />
+    //         </div>
+    //         <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //           Select Your Degree
+    //         </Label>
+    //         <div className="flex  flex-col ">
+    //           <select
+    //             name="Degree"
+    //             value={formData.Degree}
+    //             onChange={handleChange}
+    //             className=" p-2 rounded-md"
+    //           >
+    //             <option value="">Degree</option>
+    //             <option value="B.Tech">B.Tech</option>
+    //             <option value="B.E">B.E</option>
+    //           </select>
+    //           {formData.Degree && (
+    //             <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //               Selected Degree is {formData.Degree}
+    //             </Label>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //             Select Your Branch
+    //           </Label>
+    //           <div className="flex  flex-col  cursor-pointer ">
+    //             <select
+    //               name="Branch"
+    //               value={formData.Branch}
+    //               onChange={handleChange}
+    //               className=" p-2 rounded-md"
+    //             >
+    //               <option value="">Branch</option>
+    //               <option value="Computer Science">Computer Science Eng</option>
+    //               <option value="ENTC">ENTC</option>
+    //               <option value="Electrical">Electrical</option>
+    //               <option value="Mechanical">Mechanical</option>
+    //               <option value="Civil">Civil</option>
+    //             </select>
+    //             {formData.Branch && (
+    //               <Label className="block mb-1  leading-normal text-muted-foreground  sm:leading-7">
+    //                 Selected Branch is {formData.Branch}
+    //               </Label>
+    //             )}
+    //           </div>
+    //           <div></div>
+    //         </div>
+    //         <div>
+    //           <Button type="submit">Submit</Button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </form>
+    // </div>
+    <>
+      <EditProfile/>
+    </>
   );
 };
 
