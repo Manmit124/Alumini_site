@@ -11,12 +11,34 @@ const UserSchema = new Schema(
     city: { type: String },
     country: { type: String },
     admin: { type: Boolean, default: false },
-    FullName:{type:String},
-    GraduationYear:{type:String},
-    MobileNumber:{type:String},
-    Degree:{type:String},
-    Branch:{type:String},
-    
+    FullName: { type: String },
+    GraduationYear: { type: String },
+    MobileNumber: { type: String },
+    Degree: { type: String },
+    Branch: { type: String },
+    WorkExperience: [
+      {
+        Job: {
+          type: String,
+          default: null,
+        },
+        Company: {
+          type: String,
+          default: null,
+        },
+        Industry: {
+          type: String,
+          default: null,
+        },
+        startEndYear: {
+          type: String,
+          default: null,
+        },
+      },
+    ],
+    bio: {
+      type: String,
+    },
 
     password: {
       type: String,
@@ -26,6 +48,20 @@ const UserSchema = new Schema(
           return pass?.length && pass.length >= 5;
         },
         message: "password must be at least 5 characters",
+      },
+    },
+    social: {
+      linkedin: {
+        type: String,
+        default: null,
+      },
+      instagram: {
+        type: String,
+        default: null,
+      },
+      twitter: {
+        type: String,
+        default: null,
       },
     },
     resetToken: {

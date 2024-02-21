@@ -19,15 +19,15 @@ const WorkExperince = ({
             className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3"
           >
             <div className="form-control w-full ">
-              <Label htmlFor={`jobTitle${index}`} className="label">
+              <Label htmlFor={`Job${index}`} className="label">
                 <span className="text-white">Job Title</span>
               </Label>
               <div className="flex items-center gap-3">
                 <Input
                   type="text"
-                  name="jobTitle"
-                  id={`jobTitle${index}`}
-                  value={experience.jobTitle}
+                  name="Job"
+                  id={`Job${index}`}
+                  value={experience.Job}
                   onChange={(e) => handleExperienceChange(e, index)}
                   placeholder="Enter your job title"
                   className="bg-transparent text-white  w-full max-w-lg"
@@ -37,18 +37,18 @@ const WorkExperince = ({
           </div>
           <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
             <div className=" w-full">
-              <Label htmlFor={`company${index}`} className="label">
+              <Label htmlFor={`Company${index}`} className="label">
                 <span className="text-white">Company Name</span>
               </Label>
               <div className="flex items-center gap-3">
                 <Input
                   type="text"
-                  name="company"
-                  id={`company${index}`}
-                  value={experience.company}
+                  name="Company"
+                  id={`Company${index}`}
+                  value={experience.Company}
                   onChange={(e) => handleExperienceChange(e, index)}
                   placeholder="Enter your company name"
-                  className="bg-transparent text-whitew-full max-w-lg"
+                  className="bg-transparent text-white w-full max-w-lg"
                 />
               </div>
             </div>
@@ -62,9 +62,9 @@ const WorkExperince = ({
               <div className="flex items-center gap-3">
                 <Input
                   type="text"
-                  name="industry"
-                  id={`industry${index}`}
-                  value={experience.industry}
+                  name="Industry"
+                  id={`Industry${index}`}
+                  value={experience.Industry}
                   onChange={(e) => handleExperienceChange(e, index)}
                   placeholder="Enter your industry"
                   className="bg-transparent text-white w-full max-w-lg"
@@ -93,7 +93,7 @@ const WorkExperince = ({
           </div>
         </div>
       ))}
-      <Button onClick={handleAddExperience}>Add Experience</Button>
+      <Button  onClick={handleAddExperience}>Add Experience</Button>
 
       {/* <div className="grid md:grid-cols-2 mx-auto">
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
