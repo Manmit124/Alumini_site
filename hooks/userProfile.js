@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function Userprofile() {
-  const [data, setData] = useState(false);
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);

@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import WorkExperince from "./WorkExperince";
 import { Textarea } from "@/components/ui/textarea";
 import NewImageUploader from "@/utils/NewImageUploader";
@@ -97,6 +97,13 @@ const EditProfile = () => {
       WorkExperience: newWorkExperience,
     }));
   };
+  const handleRemoveExperience = (indexToRemove) => {
+    setformData((prevState) => ({
+      ...prevState,
+      WorkExperience: prevState.WorkExperience.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+  
 
   const handleSocialChange = (event) => {
     const { name, value } = event.target;
@@ -114,6 +121,7 @@ const EditProfile = () => {
     const { name, value } = e.target;
     setformData((prevData) => ({ ...prevData, [name]: value }));
   };
+  console.log(formData.Branch)
 
   return (
     <div className=" phone:mt-12 max-phone:mt-24 py-4 w-11/12 mx-auto">
@@ -181,8 +189,8 @@ const EditProfile = () => {
                     name="email"
                     disabled
                     id="email"
-                    placeholder="manmittiwade124@gmail.com"
-                    // value={formData.phoneNumber.data}
+                    // placeholder="manmittiwade124@gmail.com"
+                    value={userData?.email}
                     // onChange={handleInputChangeObjData}
                     className=" bg-transparent text-white w-full max-w-lg "
                   />
@@ -215,28 +223,43 @@ const EditProfile = () => {
                   <span className=" text-white">Select Branch</span>
                 </Label>
                 <div className="flex  items-center gap-3 ">
-                  <Select
+                <select
+  name="Branch"
+  value={formData.Branch}
+  onChange={handleInputChange}
+  className="bg-transparent text-white"
+>
+  <option value="" disabled>Select your Branch</option>
+  <option value="CSE">Computer Science</option>
+  <option value="Civil">Civil</option>
+  <option value="ENTC">ENTC</option>
+  <option value="Electrical">Electrical</option>
+  <option value="Mechanical">Mechanical</option>
+  <option value="Instr">Instrumentation</option>
+</select>
+
+                  {/* <Select
                   name="Branch"
                     value={formData.Branch}
-                    onChange={handleInputChange}
+                    // onChange={handleInputChange}
                     className="bg-transparent text-white"
                   >
                     <SelectTrigger className="bg-transparent text-white">
-                      <SelectValue placeholder="Select your branch" />
+                      <SelectValue placeholder="select your Branch"/>
                     </SelectTrigger>
                     <SelectContent
-                      name="Branch"
-                      onChange={handleInputChange}
+                  
+                     
                       className="bg-transparent text-white"
                     >
-                      <SelectItem value="CSE">Computer Science</SelectItem>
+                      <SelectItem name="Branch" value="CSE">Computer Science</SelectItem>
                       <SelectItem value="Civil">Civil</SelectItem>
                       <SelectItem value="ENTC">ENTC</SelectItem>
                       <SelectItem value="Electrical">Electrical</SelectItem>
                       <SelectItem value="Mechanical">Mechanical</SelectItem>
                       <SelectItem value="Instr">Instrumentation</SelectItem>
                     </SelectContent>
-                  </Select>
+                  </Select> */}
                 </div>
               </div>
             </div>
@@ -310,13 +333,14 @@ const EditProfile = () => {
                   <Select
                   name="country"
                     value={formData.country}
-                    onChange={handleInputChange}
+                    onValueChange={handleInputChange}
+                    // defaultValue={formData.country}
                     className="bg-transparent text-white"
                   >
                     <SelectTrigger className="bg-transparent text-white">
                       <SelectValue placeholder="Select your country" />
                     </SelectTrigger>
-                    <SelectContent onChange={handleInputChange} className="bg-transparent text-white  ">
+                    <SelectContent onChange={handleInputChange} name="country" className="bg-transparent text-white  ">
                       <SelectItem value="US">United States</SelectItem>
                       <SelectItem value="CN">China</SelectItem>
                       <SelectItem value="IN">India</SelectItem>
@@ -356,7 +380,7 @@ const EditProfile = () => {
                 </div>
               </div>
             </div>
-
+{/* 
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
               <div className="f w-full  ">
                 <Label htmlFor="dateOfBirth" className="label">
@@ -374,7 +398,7 @@ const EditProfile = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* work experience */}
@@ -384,6 +408,7 @@ const EditProfile = () => {
             experiences={formData.WorkExperience}
             handleExperienceChange={handleExperienceChange}
             handleAddExperience={handleAddExperience}
+            handleRemoveExperience={handleRemoveExperience}
           />
 
           <div className="flex flex-col md:flex-row  items-start gap-5  mb-10 mt-9">

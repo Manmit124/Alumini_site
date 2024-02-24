@@ -7,17 +7,13 @@ const WorkExperince = ({
   experiences,
   handleExperienceChange,
   handleAddExperience,
+  handleRemoveExperience
 }) => {
   return (
     <>
-    
       {experiences.map((experience, index) => (
-        <div  key={index} className="grid md:grid-cols-2 mx-auto">
-      
-          <div
-           
-            className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3"
-          >
+        <div key={index} className="grid md:grid-cols-2 mx-auto">
+          <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
             <div className="form-control w-full ">
               <Label htmlFor={`Job${index}`} className="label">
                 <span className="text-white">Job Title</span>
@@ -71,10 +67,10 @@ const WorkExperince = ({
                 />
               </div>
             </div>
-</div>
+          </div>
 
-<div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
-              <div className="f w-full  ">
+          <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+            <div className="f w-full  ">
               <Label htmlFor={`startEndYear${index}`} className="label">
                 <span className="text-white">Start and end year</span>
               </Label>
@@ -91,87 +87,11 @@ const WorkExperince = ({
               </div>
             </div>
           </div>
+        
+        <Button className=" w-28 mb-2 bg-red-800  hover:bg-red-500 " onClick={()=>handleRemoveExperience(index)}>Remove</Button>
         </div>
       ))}
-      <Button  onClick={handleAddExperience}>Add Experience</Button>
-
-      {/* <div className="grid md:grid-cols-2 mx-auto">
-            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
-              <div className="form-control w-full ">
-                <Label htmlFor="phoneNumber" className="label">
-                  <span className=" text-white">Job Title </span>
-                </Label>
-                <div className="flex  items-center gap-3 ">
-                  <Input
-                    type="text"
-                    name="job title"
-                    id="job title"
-                    //   value={formData.phoneNumber.data}
-                    //   onChange={handleInputChangeObjData}
-                    placeholder="Enter your city"
-                    className="input input-bordered w-full max-w-lg "
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
-              <div className="f w-full  ">
-                <Label htmlFor="dateOfBirth" className="label">
-                  <span className=" text-white">Company Name</span>
-                </Label>
-                <div className="flex  items-center gap-3">
-                  <Input
-                    type="text"
-                    id="company"
-                    name="company"
-                    //   value={formData.dateOfBirth.data}
-                    //   onChange={handleInputChangeObjData}
-                    placeholder="Enter Your Current Job Role"
-                    className=" input-w-full max-w-lg "
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
-              <div className="f w-full  ">
-                <Label htmlFor="dateOfBirth" className="label">
-                  <span className=" text-white">Industry</span>
-                </Label>
-                <div className="flex  items-center gap-3">
-                  <Input
-                    type="text"
-                    id="industry"
-                    name="industry"
-                    //   value={formData.dateOfBirth.data}
-                    //   onChange={handleInputChangeObjData}
-                    placeholder="Enter Your Current Job Role"
-                    className=" input-w-full max-w-lg "
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
-              <div className="f w-full  ">
-                <Label htmlFor="dateOfBirth" className="label">
-                  <span className=" text-white">Start and end year</span>
-                </Label>
-                <div className="flex  items-center gap-3">
-                  <Input
-                    type="text"
-                    id="industry"
-                    name="industry"
-                    //   value={formData.dateOfBirth.data}
-                    //   onChange={handleInputChangeObjData}
-                    placeholder="Enter Your Current Job Role"
-                    className=" input-w-full max-w-lg "
-                  />
-                </div>
-              </div>
-            </div>
-
-          </div>
-            <Button>Add</Button> */}
+      <Button onClick={handleAddExperience}>Add Experience</Button>
     </>
   );
 };
