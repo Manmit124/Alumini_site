@@ -3,23 +3,27 @@ import { slideInFromLeft, slideInFromTop } from "@/utils/motion";
 import { motion } from "framer-motion";
 import React from "react";
 import { SparklesIcon } from "@heroicons/react/24/solid";
-import Spline from "@splinetool/react-spline";
+
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroContent = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full "
+      className="flex  items-center justify-center px-20 mt-20 w-full "
     >
-      <div className=" h-full w-full flex  flex-col gap-5 justify-center m-auto  text-start">
+    <div className="   max-w-8xl flex  mt-4  gap-5 justify-center m-auto max  text-start">
+      <div className=" flex flex-col justify-center items-center">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
-          <h1 className="Welcome-text text-[13px]">Welcome to Alumini-Nexus</h1>
+          <h1 className="Welcome-text text-[13px]">
+            Welcome to GCOEC Chandrapur Alumni Website!
+          </h1>
         </motion.div>
         <motion.div
           variants={slideInFromLeft(0.5)}
@@ -37,28 +41,34 @@ const HeroContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-gray-400 my-5 max-w-[600px]"
+          className="text-lg text-gray-400 my-5 max-w-[900px]"
         >
-          Our project aims to bridge this gap by creating Alumni Nexus,  a
-          platform where alumni can showcase their profiles platform where
-          alumni can showcase their profiles
+          Government College of Engineering Chandrapur is established in 1996
+          This is the only Government Institute under Gondwana University,
+          Gadchiroli. This Government institute is completely funded by
+          Government of Maharashtra. The Institute is under Director of
+          Technical Education, M.S., Mumbai and is administered through its
+          Regional office at Nagpur. Now a days, due to globalization there is
+          stiff competition at the national & International level as well
+          phenomenal growth in the technology. For this, competent technocrats &
+          engineers are in great demand and to serve this requirement,
+          Government College of Engineering,Chandrapur is taking efforts to
+          produce high quality technocrats.
         </motion.p>
+        {/* <Link href="https://www.gcoec.ac.in/gcoec/#" target="_blank"> */}
+
+       
         <motion.a
           variants={slideInFromLeft(1)}
           className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           Learn More!
         </motion.a>
+        {/* </Link> */}
       </div>
-      <div className=" w-full h-2/4 md:h-full md:w-3/5  flex items-center justify-center">
-        {/* <Image
-        src={"/Home/ai.png"}
-        width={500}
-        height={500}
-        className=" z-[-10] "
-      /> */}
-      </div>
-    </motion.div>
+    </div>
+
+     </motion.div>
   );
 };
 

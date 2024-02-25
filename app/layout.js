@@ -13,12 +13,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#030014]  `}>
+      <body className={`${inter.className} bg-[#000000] bg-[radial-gradient(#cccccc33_1px,#000000_1px)] bg-[size:40px_50px]  `}>
         <AuthProvider>
-        <StarCanvas/>
+        {/* <StarCanvas/> */}
         {children}
         </AuthProvider>
       </body>
     </html>
   );
 }
+// bg-[#030014]

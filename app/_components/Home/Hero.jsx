@@ -2,12 +2,15 @@ import React from 'react'
 import HeroContent from './HeroContent'
 import Image from 'next/image'
 import StarCanvas from './StarBackground'
+import ImageSlider from './ImageSlider'
+import QuickLinks from './QuickLinks'
+import Events from './Events'
 
 const Hero = () => {
   return (
-    <div className=' relative flex flex-col  h-full w-full   '>
+    <div className='      '>
    
-    <video 
+    {/* <video 
     autoPlay
     muted
     loop 
@@ -15,14 +18,14 @@ const Hero = () => {
     >
 
       <source src='/Home/blackhole.webm'  type='video/webm' />
-    </video>
-
-    <div className='mx-auto max-w-4xl px-6 lg:px-8'>
+    </video> */}
+<ImageSlider/>
+    {/* <div className='mx-auto max-w-4xl px-6 lg:px-8'>
           
               <div className=' flow-root sm:mt-24'>
              
                 <div className='m-2 rounded-xl bg-white-900/5 p-2 ring-1 ring-inset ring-white lg:-m-4 lg:rounded-2xl lg:p-4 bg-[#03001417] backdrop-blur-md '>
-                {/* <h1>This Beautiful Painnting for you </h1> */}
+                <h1>This Beautiful Painnting for you </h1>
                   <Image
                     src='/college.jpg'
                     alt='product preview'
@@ -34,8 +37,13 @@ const Hero = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
+         
+
     <HeroContent/>
+    <QuickLinks/>
+    <Events/>
+        
     </div>
   )
 }

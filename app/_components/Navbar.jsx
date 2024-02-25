@@ -45,13 +45,13 @@ const Navbar = () => {
         <Link href={"/"} className=" h-auto w-auto flex  flex-row items-center">
         <div className=" mt-2">
 
-          <Image
+          {/* <Image
           src={"/logo.png"}
             alt="logo"
-            width={90}
-            height={90}
+            width={40}
+            height={30}
             className=" cursor-pointer  mt-3 "
-          />
+          /> */}
         </div>
           <span className=" font-bold hidden md:block text-gray-300 ">
             Alumini-Nexus
