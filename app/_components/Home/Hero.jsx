@@ -5,6 +5,9 @@ import StarCanvas from './StarBackground'
 import ImageSlider from './ImageSlider'
 import QuickLinks from './QuickLinks'
 import Events from './Events'
+import NotableAlumniMarquee from './NotableAlumniMarquee'
+import Testomonials from './Testimonials'
+import Faq from './Faq'
 
 const Hero = () => {
   return (
@@ -43,6 +46,9 @@ const Hero = () => {
     <HeroContent/>
     <QuickLinks/>
     <Events/>
+    <NotableAlumniMarquee />
+    <Testomonials/>
+    <Faq/>
         
     </div>
   )

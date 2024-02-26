@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/utils/AuthProvider";
 import StarCanvas from "./_components/Home/StarBackground";
+import Footer from "./_components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
         <AuthProvider>
         {/* <StarCanvas/> */}
         {children}
+      
         </AuthProvider>
+      
       </body>
     </html>
   );
