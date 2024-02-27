@@ -40,7 +40,9 @@ const ImageSlider = () => {
               className="absolute h-[450px] w-full inset-0 text-left pt-32 lg:pl-24 md:pl-16 pl-8 bg-gradient-to-r  from-[rgb(8,8,8)] via-[rgba(0,0,0,0.56)] to-transparent"
             >
               <h5 className="lg:text-4xl md:text-3xl text-2xl font-bold pb-2">
-                <span className="text-sky-500">Empower.</span> Iginte. Embrace.
+                <span className="text-sky-500">Empower.</span> <span className=" text-purple-600">
+                Iginte. Embrace.
+                </span>
               </h5>
               <p className="lg:text-7xl md:text-6xl text-4xl font-bold text-white ">
                 WELCOME BACK

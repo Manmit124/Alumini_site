@@ -40,10 +40,6 @@
           link: "/alumni-database?role=pg",
         },
         {
-          name: "Ph.D",
-          link: "/alumni-database?role=phd",
-        },
-        {
           name: "Faculty/Staff",
           link: "/alumni-database?role=faculty-staff",
         },
