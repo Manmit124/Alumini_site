@@ -6,25 +6,8 @@ import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "next-auth/react";
 import MobileMenu from "./MobileMenu";
 import Userprofile from "@/hooks/userProfile";
+import { NavLinks } from "@/config/config";
 
-const Navlinks = [
-  {
-    title: "Alumini",
-    href: "/Alumini",
-  },
-  {
-    title: "Projects",
-    href: "/projects",
-  },
-  {
-    title: "Blog",
-    href: "/blog",
-  },
-  {
-    title: "Photos",
-    href: "/photos",
-  },
-];
 
 
 const Navbar = () => {
@@ -42,7 +25,7 @@ const Navbar = () => {
 {/* shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md  shadow-lg*/}
     <div className="w-full lg:h-[65px] fixed top-0   z-50 px-10 hidden md:flex lg:flex ">
       <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
-        <Link href={"/"} className=" h-auto w-auto flex  flex-row items-center">
+        <Link href={"/"} className=" h-auto w-auto flex  flex-row items-center ml-5">
         <div className=" mt-2">
 
           {/* <Image
@@ -57,13 +40,13 @@ const Navbar = () => {
             Alumini-Nexus
           </span>
         </Link>
-        <div className=" h-full flex flex-row items-center justify-between md:mr-20">
-          <div className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
+        <div className=" h-full flex flex-row items-center justify-between md:mr-20 ml-10  ">
+          <div className="flex items-center justify-between w-full  h-auto border border-[#7042f861] bg-[#03001485] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200">
             <ul className="flex items-center gap-x-10">
-              {Navlinks.map((link, id) => (
+              {NavLinks.map((link, id) => (
                 <li key={id}>
-                  <Link href={link.href} className="font-incognito">
-                    {link.title}
+                  <Link href={"/"} className="font-incognito">
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -85,7 +68,7 @@ const Navbar = () => {
                   />
                 </div>
               </Link>
-              <Button
+              {/* <Button
                 onClick={() =>
                   signOut({
                     callbackUrl: `${window.location.origin}/login`,
@@ -93,7 +76,7 @@ const Navbar = () => {
                 }
               >
                 Logout
-              </Button>
+              </Button> */}
             </>
           )}
           {status === "unauthenticated" && (

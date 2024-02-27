@@ -1,8 +1,9 @@
-import footerConfig from "@/config/Footer";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import BackToTopButton from "./Home/BackToTopButton";
+import { footerConfig } from "@/config/config";
 
 
 const Footer = () => {
