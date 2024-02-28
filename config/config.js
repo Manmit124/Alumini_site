@@ -108,4 +108,31 @@
     }
   ];
   
-  export { footerConfig, NavLinks };
+   const Branches = [
+     {
+         name: 'Computer Science & Engg.',
+         value: 'CSE'
+     },
+     {
+         name: 'Electronics & Communication Engg.',
+         value: 'ECE'
+     },
+    {
+        name: 'Electrical Engineering',
+        value: 'EE'
+    },
+    {
+        name: 'Mechanical Engineering',
+        value: 'ME'
+    },
+    {
+        name: 'Civil Engineering',
+        value: 'CE'
+    },
+    {
+        name: 'Instrumentation',
+        value: 'Instru.'
+    }
+  
+]
+  export { footerConfig, NavLinks,Branches };
