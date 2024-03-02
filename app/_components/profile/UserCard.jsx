@@ -26,25 +26,29 @@ const UserCard = () => {
         <>
           <div className="flex w-full justify-center">
             <Image
-              src={data.image}
+              src={data?.image}
               width={100}
               height={100}
               alt=""
               className="rounded-full  w-[90px] h-[90px]"
             />
-             {/* {data.image ? (
-            <Avatar>
-              <AvatarImage src={data.image} alt="logo" />
-              <AvatarFallback><FaUserGraduate/></AvatarFallback>
-            </Avatar>
-          ) : (
-            <Avatar
-              sx={{ width: 100, height: 96, padding: 0 }}
-              color="primary"
-            >
-                 <AvatarFallback><FaUserGraduate  className=" text-2xl"/></AvatarFallback>
-            </Avatar>
-          )} */}
+            {/* { data.image ? (
+              <Avatar>
+                <AvatarImage src={data.image} alt="logo" />
+                <AvatarFallback>
+                  <FaUserGraduate />
+                </AvatarFallback>
+              </Avatar>
+            ) : (
+              <Avatar
+                sx={{ width: 100, height: 96, padding: 0 }}
+                color="primary"
+              >
+                <AvatarFallback>
+                  <FaUserGraduate className=" text-2xl" />
+                </AvatarFallback>
+              </Avatar>
+            )} */}
           </div>
 
           <div className="flex flex-col items-center gap-[8px] p-0">
@@ -64,7 +68,7 @@ const UserCard = () => {
                 {truncatedBio}
                 {data.bio?.length > 150 && (
                   <>
-                    <p className=" text-white text-center">{data.bio}</p>
+                    <p className=" text-white text-center">{data?.bio}</p>
                     <button
                       onClick={toggleBio}
                       className="text-blue-500 hover:underline"
@@ -84,14 +88,14 @@ const UserCard = () => {
               }`}
             >
               {data.social?.linkedin && (
-                <a href={data.social.linkedin} target="_blank" rel="noreferrer">
+                <a href={data.social?.linkedin} target="_blank" rel="noreferrer">
                   <FaLinkedin size={30} color="white" />
                 </a>
               )}
 
               {data.social?.instagram && (
                 <a
-                  href={data.social.instagram}
+                  href={data.social?.instagram}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -99,7 +103,7 @@ const UserCard = () => {
                 </a>
               )}
               {data.social?.twitter && (
-                <a href={data.social.twitter} target="_blank" rel="noreferrer">
+                <a href={data.social?.twitter} target="_blank" rel="noreferrer">
                   <FaXTwitter size={30} color="white" />
                 </a>
               )}
