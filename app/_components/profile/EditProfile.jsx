@@ -100,10 +100,11 @@ const EditProfile = () => {
   const handleRemoveExperience = (indexToRemove) => {
     setformData((prevState) => ({
       ...prevState,
-      WorkExperience: prevState.WorkExperience.filter((_, index) => index !== indexToRemove),
+      WorkExperience: prevState.WorkExperience.filter(
+        (_, index) => index !== indexToRemove
+      ),
     }));
   };
-  
 
   const handleSocialChange = (event) => {
     const { name, value } = event.target;
@@ -121,7 +122,7 @@ const EditProfile = () => {
     const { name, value } = e.target;
     setformData((prevData) => ({ ...prevData, [name]: value }));
   };
-  console.log(formData.Branch)
+  console.log(formData.Branch);
 
   return (
     <div className=" phone:mt-12 max-phone:mt-24 py-4 w-11/12 mx-auto">
@@ -223,20 +224,22 @@ const EditProfile = () => {
                   <span className=" text-white">Select Branch</span>
                 </Label>
                 <div className="flex  items-center gap-3 ">
-                <select
-  name="Branch"
-  value={formData.Branch}
-  onChange={handleInputChange}
-  className="bg-transparent text-white"
->
-  <option value="" disabled>Select your Branch</option>
-  <option value="CSE">Computer Science</option>
-  <option value="Civil">Civil</option>
-  <option value="ENTC">ENTC</option>
-  <option value="Electrical">Electrical</option>
-  <option value="Mechanical">Mechanical</option>
-  <option value="Instr">Instrumentation</option>
-</select>
+                  <select
+                    name="Branch"
+                    value={formData.Branch}
+                    onChange={handleInputChange}
+                    className="bg-transparent text-white"
+                  >
+                    <option value="" disabled>
+                      Select your Branch
+                    </option>
+                    <option value="CSE">Computer Science</option>imag
+                    <option value="Civil">Civil</option>
+                    <option value="ENTC">ENTC</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Instr">Instrumentation</option>
+                  </select>
 
                   {/* <Select
                   name="Branch"
@@ -331,7 +334,7 @@ const EditProfile = () => {
                 </Label>
                 <div className="flex  items-center gap-3 ">
                   <Select
-                  name="country"
+                    name="country"
                     value={formData.country}
                     onValueChange={handleInputChange}
                     // defaultValue={formData.country}
@@ -340,7 +343,11 @@ const EditProfile = () => {
                     <SelectTrigger className="bg-transparent text-white">
                       <SelectValue placeholder="Select your country" />
                     </SelectTrigger>
-                    <SelectContent onChange={handleInputChange} name="country" className="bg-transparent text-white  ">
+                    <SelectContent
+                      onChange={handleInputChange}
+                      name="country"
+                      className="bg-transparent text-white  "
+                    >
                       <SelectItem value="US">United States</SelectItem>
                       <SelectItem value="CN">China</SelectItem>
                       <SelectItem value="IN">India</SelectItem>
@@ -380,7 +387,7 @@ const EditProfile = () => {
                 </div>
               </div>
             </div>
-{/* 
+            {/* 
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
               <div className="f w-full  ">
                 <Label htmlFor="dateOfBirth" className="label">
@@ -424,9 +431,8 @@ const EditProfile = () => {
                     id="bio"
                     className=" w-full bg-transparent text-white  h-24 max-w-lg"
                     placeholder=""
-                   value={formData.bio}
-                   onChange={handleInputChange}
-                    
+                    value={formData.bio}
+                    onChange={handleInputChange}
                   ></Textarea>
                   <p className="text-sm text-muted-foreground">
                     Bio should be 250 max characters

@@ -8,6 +8,8 @@ import MobileMenu from "./MobileMenu";
 import Userprofile from "@/hooks/userProfile";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { NavLinks } from "@/config/config";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FaUserGraduate } from "react-icons/fa6";
 
 const Navbar = () => {
   const session = useSession();
@@ -127,13 +129,26 @@ const Navbar = () => {
               <>
                 <Link href={"/profile"}>
                   <div>
-                    <Image
+                    {/* <Image
                       src={data?.image}
                       height={35}
                       width={35}
                       alt="user image "
                       className=" rounded-xl "
-                    />
+                    /> */}
+                      {data.image ? (
+            <Avatar>
+              <AvatarImage src={data.image} alt="logo" />
+              <AvatarFallback><FaUserGraduate/></AvatarFallback>
+            </Avatar>
+          ) : (
+            <Avatar
+              sx={{ width: 100, height: 96, padding: 0 }}
+              color="primary"
+            >
+                 <AvatarFallback><FaUserGraduate  className=" text-2xl"/></AvatarFallback>
+            </Avatar>
+          )}
                   </div>
                 </Link>
                 {/* <Button
