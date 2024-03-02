@@ -18,7 +18,7 @@ const UserCard = () => {
   const toggleBio = () => {
     setShowMore(!showMore);
   };
-  const truncatedBio = showMore ? data.bio : data.bio?.slice(0, 150);
+  const truncatedBio = showMore ? data?.bio : data?.bio?.slice(0, 150);
 
   return (
     <div className="rounded-2xl bg-eerie-black-2  shadow-md flex flex-col h-fit p-12 border border-jet   lg:w-[25rem]">
