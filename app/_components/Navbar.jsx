@@ -51,9 +51,10 @@ const Navbar = () => {
                     return (
                       <>
                         <div key={index}>
-                       
                           <button
-                            onClick={() => setPopup(popup===index ? null :index)}
+                            onClick={() =>
+                              setPopup(popup === index ? null : index)
+                            }
                             // onMouseOver={() => {
                             //   if (popup > -1) {
                             //     setPopup(-1);
@@ -63,20 +64,22 @@ const Navbar = () => {
                             // }}
                             // onMouseLeave={() => setPopup(-1)}
                             onMouseEnter={() => setPopup(index)}
-                      // onMouseLeave={() => setPopup(null)}
+                            // onMouseLeave={() => setPopup(null)}
                             style={{ textDecoration: "none" }}
                             key={index}
                             className=" flex flex-row items-center"
                           >
                             {link.name}
                             {link.children && (
-                        <MdKeyboardArrowDown
-                          className={`${popup === index ? "transform rotate-180" : ""}`}
-                          size={24}
-                        />
-                      )}
+                              <MdKeyboardArrowDown
+                                className={`${
+                                  popup === index ? "transform rotate-180" : ""
+                                }`}
+                                size={24}
+                              />
+                            )}
                           </button>
-                        
+
                           <div
                             onMouseLeave={() => setPopup(null)}
                             // onMouseOver={() => {
@@ -84,18 +87,23 @@ const Navbar = () => {
                             // }}
                           >
                             {link.children && popup === index && (
-                              <div className={`bg-gray-950 shadow-lg border border-[#7042f861] rounded-xl absolute mt-2  ${popup===index?"flex":"hidden"}`}>
+                              <div
+                                className={`bg-gray-950 shadow-lg border border-[#7042f861] rounded-xl absolute mt-2  ${
+                                  popup === index ? "flex" : "hidden"
+                                }`}
+                              >
                                 <ul className="flex flex-col gap-1.5">
                                   {link.children.map((child, i) => (
                                     <Link
                                       key={i + "child"}
                                       href={child.link}
-                                     
                                       className=" "
                                     >
-                                      <p onClick={() => setPopup(null)} className="block px-4 py-2 text-gray-400 hover:text-blue-400">
+                                      <p
+                                        onClick={() => setPopup(null)}
+                                        className="block px-4 py-2 text-gray-400 hover:text-blue-400"
+                                      >
                                         {child.name}
-                                         
                                       </p>
                                       <div className="w-[90%] m-[auto] bg-gray-800 h-[1px]"></div>
                                     </Link>
@@ -105,19 +113,20 @@ const Navbar = () => {
                             )}
                           </div>
                         </div>
-                      
                       </>
                     );
-                  }else{
+                  } else {
                     return (
-                  <Link key={index + "other"} style={{ textDecoration: "none" }} href={link.link}>
-                    <p
-                      className="text-white hover:text-blue-400"
-                    >
-                      {link.name}
-                    </p>
-                  </Link>
-                    )
+                      <Link
+                        key={index + "other"}
+                        style={{ textDecoration: "none" }}
+                        href={link.link}
+                      >
+                        <p className="text-white hover:text-blue-400">
+                          {link.name}
+                        </p>
+                      </Link>
+                    );
                   }
                 })}
               </ul>
@@ -136,19 +145,23 @@ const Navbar = () => {
                       alt="user image "
                       className=" rounded-xl "
                     /> */}
-                      {data.image ? (
-            <Avatar>
-              <AvatarImage src={data.image} alt="logo" />
-              <AvatarFallback><FaUserGraduate/></AvatarFallback>
-            </Avatar>
-          ) : (
-            <Avatar
-              sx={{ width: 100, height: 96, padding: 0 }}
-              color="primary"
-            >
-                 <AvatarFallback><FaUserGraduate  className=" text-2xl"/></AvatarFallback>
-            </Avatar>
-          )}
+                    {data && data?.image ? (
+                      <Avatar>
+                        <AvatarImage src={data.image} alt="logo" />
+                        <AvatarFallback>
+                          <FaUserGraduate />
+                        </AvatarFallback>
+                      </Avatar>
+                    ) : (
+                      <Avatar
+                        sx={{ width: 100, height: 96, padding: 0 }}
+                        color="primary"
+                      >
+                        <AvatarFallback>
+                          <FaUserGraduate className=" text-2xl" />
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
                   </div>
                 </Link>
                 {/* <Button
@@ -175,8 +188,11 @@ const Navbar = () => {
 };
 
 export default Navbar;
-  {/* <div onMouseLeave={()=>setPopup(-1)} onMouseOver={()=>{setPopup(index)}}> */}
-                        {/* <div>
+{
+  /* <div onMouseLeave={()=>setPopup(-1)} onMouseOver={()=>{setPopup(index)}}> */
+}
+{
+  /* <div>
                           <div
                             className={`bg-gray-950 shadow-lg   border  border-gray-800 px-5 w-48 py-5 rounded-xl absolute flex-col  ${
                               popup === index ? "flex" : "hidden"
@@ -198,4 +214,5 @@ export default Navbar;
                               ))}
                             </ul>
                           </div>
-                        </div> */}
+                        </div> */
+}
