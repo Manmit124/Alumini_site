@@ -25,7 +25,7 @@ const Page = () => {
         <h5 className="lg:text-2xl md:text-xl text-lg font-bold pb-2">
           <span className=" text-white">
             Type:
-          </span><span className="text-rose-500">{role.toUpperCase()}</span>
+          </span><span className="text-rose-500">{role?.toUpperCase()}</span>
         </h5>
         <div className="lg:w-[80%] w-full md:px-6 px-3 mt-5  m-auto relative flex md:gap-3 gap-2 items-center ">
           <div className=" flex-1 relative w-full">
