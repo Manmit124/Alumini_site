@@ -10,6 +10,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { NavLinks } from "@/config/config";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaUserGraduate } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const session = useSession();
@@ -19,6 +20,8 @@ const Navbar = () => {
   const { loading, data } = Userprofile();
   const [menu, setMenu] = useState(false);
   const [popup, setPopup] = useState(-1);
+  const pathname=usePathname();
+
 
   return (
     <>
@@ -47,9 +50,11 @@ const Navbar = () => {
             <div className="flex items-center justify-between w-full  h-auto border border-[#7042f861] bg-[#03001485] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200 overflow-hidden">
               <ul className="flex  items-center gap-x-10">
                 {NavLinks.map((link, index) => {
+                  {/* const isActive=pathname.startsWith(link.) */}
                   if (link.children) {
                     return (
                       <>
+                   
                         <div key={index}>
                           <button
                             onClick={() =>
@@ -67,7 +72,7 @@ const Navbar = () => {
                             // onMouseLeave={() => setPopup(null)}
                             style={{ textDecoration: "none" }}
                             key={index}
-                            className=" flex flex-row items-center"
+                            className={` flex flex-row items-center`}
                           >
                             {link.name}
                             {link.children && (

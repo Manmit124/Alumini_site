@@ -9,7 +9,7 @@ import { BsFillArrowUpRightCircleFill, BsGraphUpArrow } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
 
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import {
   Card,
   CardContent,
@@ -26,7 +26,10 @@ const Page = () => {
       <div className=" flex flex-row justify-between ">
         {/* <h1 className="pb-4 normal-case text-[#F0ECE5]">Hey,{data.username}👋</h1> */}
         <div className="  mt-20 ">
+        <Suspense fallback={<h1 className=" text-red-900">Loading ...</h1>}>
+
           <UserCard />
+        </Suspense>
         </div>
         <div className=" flex flex-row flex-wrap items-center justify-evenly">
          

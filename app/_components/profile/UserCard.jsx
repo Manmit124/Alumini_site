@@ -22,6 +22,7 @@ const UserCard = () => {
 
   return (
     <div className="rounded-2xl bg-eerie-black-2  shadow-md flex flex-col h-fit p-12 border border-jet   lg:w-[25rem]">
+   
       {data && (
         <>
           <div className="flex w-full justify-center">
@@ -88,7 +89,11 @@ const UserCard = () => {
               }`}
             >
               {data.social?.linkedin && (
-                <a href={data.social?.linkedin} target="_blank" rel="noreferrer">
+                <a
+                  href={data.social?.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <FaLinkedin size={30} color="white" />
                 </a>
               )}

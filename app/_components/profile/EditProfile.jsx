@@ -15,6 +15,7 @@ import NewImageUploader from "@/utils/NewImageUploader";
 import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const EditProfile = () => {
   const [formData, setformData] = useState({
@@ -40,6 +41,8 @@ const EditProfile = () => {
   const session = useSession();
   const userData = session.data?.user;
   const { status } = session;
+  const router=useRouter();
+
   useEffect(() => {
     console.log(session);
     if (status === "authenticated") {
@@ -54,11 +57,16 @@ const EditProfile = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
+   
     if (response.ok) {
+      router.push("/profile")
+
       return toast({
         title: "Your Profile has been updated successfully",
         variant: "outline",
       });
+     
+
     } else {
       return toast({
         title: "Please try again",
