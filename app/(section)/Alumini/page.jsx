@@ -18,9 +18,7 @@ const Page = () => {
     setAluminis(FetchAlumini);
     
   };
-  if(data){
-    return Error("Auth is required")
-  }
+
   return (
     <div className="mt-8   justify-center">
       <div className="lg:py-5 mx-auto text-center flex flex-col items-center">
