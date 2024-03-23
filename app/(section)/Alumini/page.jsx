@@ -1,6 +1,7 @@
 "use client";
 import Userprofile from "@/hooks/userProfile";
 import { Link } from "lucide-react";
+import Error from "next/error";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -15,7 +16,11 @@ const Page = () => {
     const FetchAlumini = await response.json();
     console.log(FetchAlumini);
     setAluminis(FetchAlumini);
+    
   };
+  if(data){
+    return Error("Auth is required")
+  }
   return (
     <div className="mt-8   justify-center">
       <div className="lg:py-5 mx-auto text-center flex flex-col items-center">

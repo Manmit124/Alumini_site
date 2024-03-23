@@ -2,12 +2,25 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Branches } from "@/config/config";
+import Image from "next/image";
 import { useParams, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 const Page = () => {
   const [Branch, setBranch] = useState(null);
+  const [Aluminis, setAluminis] = useState([]);
+  useEffect(() => {
+    fetchAlumini();
+  }, []);
+  const fetchAlumini = async () => {
+    const response = await fetch("/api/users");
+    const FetchAlumini = await response.json();
+    console.log(FetchAlumini);
+    setAluminis(FetchAlumini);
+  };
+
+
   // const [searchParams, setSearchParams] = useSearchParams({
   //   role: null,
   //   page: 1,
@@ -81,6 +94,35 @@ const Page = () => {
             ))}
           </div>
         </div>
+
+        <div className="   flex-row  justify-center gap-2 grid grid-rows-1 grid-cols-4 ml-6">
+
+{Aluminis &&
+  Aluminis?.map((Alumini,index) => (
+    <>
+      <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 ">
+        <div className="  rounded-full overflow-hidden">
+          <Image
+            width={100}
+            height={120}
+            alt="Users image"
+            src={Alumini?.image}
+            className="    object-cover "
+          />
+        </div>
+        <div className=" flex flex-col ">
+          <h1 className=" text-2xl text-white">{Alumini.FullName}</h1>
+          <p className=" text-white">{Alumini.GraduationYear}</p>
+          <p className=" text-white   text-sm t">
+            {" "}
+            Passionate Fullstack web developer is with great vision to
+            change my life and world also
+          </p>
+        </div>
+      </div>
+    </>
+  ))}
+</div>
       </div>
     </div>
   );
