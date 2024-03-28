@@ -18,7 +18,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setcreatingUser(true);
-    await signIn("credentials", { email, password, callbackUrl: "/onboarding" });
+    await signIn("credentials", { email, password, callbackUrl: "/" });
 
     if (!response.ok) {
       seterror(true);
