@@ -13,7 +13,7 @@ import WorkExperince from "./WorkExperince";
 import { Textarea } from "@/components/ui/textarea";
 import NewImageUploader from "@/utils/NewImageUploader";
 import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
@@ -143,6 +143,9 @@ const EditProfile = () => {
           {/* <div className="" style={{ marginLeft: "0" }}>
             {"#include {digitomize} > {personal}"}
           </div> */}
+          <button className=" px-2 py-3 bg-green-400" onClick={()=>signOut()}>
+            Signout
+          </button>
         </div>
         <div className=" bg-transparent w-full p-8">
           {/* first row */}
