@@ -81,7 +81,7 @@ export default function MobileMenu() {
             if (link.children) {
               return (
                 <>
-                  <div className=" mt-1 px-4">
+                  <div key={index} className=" mt-1 px-4">
                     <button
                       onClick={() => setPopup(popup === index ? null : index)}
                       className=" flex flex-row items-center px-4 py-3    text-gray-400  hover:text-blue-400"
