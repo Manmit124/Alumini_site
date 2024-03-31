@@ -114,6 +114,7 @@ const EditProfile = () => {
     }));
   };
 
+  console.log(formData)
   const handleSocialChange = (event) => {
     const { name, value } = event.target;
 
