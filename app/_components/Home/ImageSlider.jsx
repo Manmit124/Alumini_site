@@ -59,7 +59,7 @@ const ImageSlider = () => {
                 GCOEC Chandrapur.
               </p>
               {status === "authenticated" ? (
-                <Link href="/dashboard">
+                <Link href="/profile">
                   <button className="px-5 py-2.5 bg-sky-500 text-white text-lg font-medium hover:scale-105 transition-all delay-75 rounded-xl ease-in hover:bg-sky-600">
                     Dashboard
                   </button>
