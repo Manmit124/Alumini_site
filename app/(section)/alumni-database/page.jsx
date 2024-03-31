@@ -95,7 +95,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="   flex-row  justify-center gap-2 grid grid-rows-1 grid-cols-4 ml-6">
+        <div className="   flex-row  justify-center gap-2 grid grid-rows-1 md:grid-cols-2 lg:grid-cols-4 ml-6">
 
 {Aluminis &&
   Aluminis?.map((Alumini,index) => (

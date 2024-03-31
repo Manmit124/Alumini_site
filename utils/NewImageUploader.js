@@ -15,22 +15,38 @@ const NewImageUploader = ({ image, setformData }) => {
       [name]: file,
     }));
   };
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(file);
-      const { name } = event.target;
-      setImage(file);
+  const handleImageChange = (ev) => {
+    const files=ev.target.files;
+    if(files?.length===1){
+      const data=new FormData;
+      data.set('file',files[0])
+      const uploadPromise=fetch('/api/upload',{
+        method:'POST',
+        body:data,
+
+      }).then(response=>{
+        if(response.ok){
+          return response.json().then(link=>{
+            console.log(link)
+            let name = "image";
+            setformData((prev) => ({
+              ...prev,
+              [name]: link,
+            }));
+          })
+        }
+      })
     }
+
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      setSelectedImage(file);
-      setImage(file);
-    }
+    // const file = event.dataTransfer.files[0];
+    // if (file) {
+    //   setSelectedImage(file);
+    //   setImage(file);
+    // }
   };
 
   const handleDragOver = (event) => {

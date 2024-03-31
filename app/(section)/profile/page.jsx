@@ -50,21 +50,7 @@ const Page = () => {
             </Card>
           </div>
 
-          <div>
-            <Card className="w-[380px] h-[10rem] border-[#D1E5F4] border-2 shadow-[8px_8px_0px_#D1E5F4] rounded-xl bg-transparent pb-2">
-              <CardHeader>{/* {cardHeader}  */}</CardHeader>
-
-              <CardContent className="  gap-4  text-white  flex flex-row  ">
-              <span className=" text-white text-2xl ">  Works Hard like Every waking Hour</span>
-              <Link href={"/profile/edit"}>
-                
-
-                <IoSettingsOutline className=" mb-2  text-4xl text-white" />
-              </Link>
-              </CardContent>
-              {/* <CardFooter className="  mb-2 flex justify-end"> <IoSettingsOutline className=" mb-2  text-2xl text-white" /></CardFooter> */}
-            </Card>
-          </div>
+    
         </div>
       </div>
     </div>

@@ -10,32 +10,13 @@ import {
   HiOutlineX,
   HiUser,
 } from "react-icons/hi";
+import { NavLinks } from "@/config/config";
+import { MdKeyboardArrowDown } from "react-icons/md";
 // import Logo from "../../../public/logo.png";
 
 export default function MobileMenu() {
   const [navShow, setNavShow] = useState(false);
-  const data = [
-    {
-      title: "About",
-      href: "/about",
-      icon: HiUser,
-    },
-    {
-      title: "Projects",
-      href: "/projects",
-      icon: HiBeaker,
-    },
-    {
-      title: "Blog",
-      href: "/blog",
-      icon: HiBookmarkAlt,
-    },
-    {
-      title: "Photos",
-      href: "/photos",
-      icon: HiCamera,
-    },
-  ];
+  const [popup, setPopup] = useState(-1);
 
   const onToggleNav = () => {
     setNavShow((status) => {
@@ -50,28 +31,32 @@ export default function MobileMenu() {
 
   return (
     <>
-    <div  className=" flex justify-between ">
-    <Link href="/" onClick={onToggleNav} className=" flex flex-row  items-center justify-center md:hidden">
+      <div className=" flex justify-between z-50   ">
+        <Link
+          href="/"
+          onClick={onToggleNav}
+          className=" flex flex-row   items-center justify-center md:hidden"
+        >
           <Image
             src={"/logo.png"}
             width={50}
             height={50}
             className=" "
-            alt="logo of company Quilex"
+            alt="Alumni site of gcoec"
           />
-           <span className=" text-2xl  ml-[-10px]  font-bold">uilex</span>
-          </Link>
-    
-      <button
-        aria-label="Toggle Menu"
-        onClick={onToggleNav}
-        className="md:hidden dark:bg-primary-bg bg-secondary-bg   rounded-md p-2"
-      >
-        <RxHamburgerMenu className="text-xl text-slate-200" />
-      </button>
+          <span className=" text-2xl  ml-[-10px]  font-bold">Nexus</span>
+        </Link>
+
+        <button
+          aria-label="Toggle Menu"
+          onClick={onToggleNav}
+          className="md:hidden  z-10  rounded-md p-2"
+        >
+          <RxHamburgerMenu className="text-xl text-slate-200" />
+        </button>
       </div>
       <div
-        className={`md:hidden fixed left-0 top-0 z-10 h-full w-full transform duration-[600ms] ease-[cubic-bezier(0.7,0,0,1)]  bg-white    ${
+        className={`md:hidden fixed left-0 top-0 z-10 h-full w-full transform duration-[600ms] ease-[cubic-bezier(0.7,0,0,1)]   bg-black   ${
           navShow ? "translate-x-0 rounded-none" : "translate-x-full"
         }`}
       >
@@ -84,7 +69,7 @@ export default function MobileMenu() {
           <button
             aria-label="Toggle Menu"
             onClick={onToggleNav}
-            className={`md:hidden dark:bg-primary-bg bg-secondary-bg border dark:border-zinc-800 border-zinc-200 rounded-full p-2 duration-500 ${
+            className={`md:hidden  border dark:border-zinc-800 border-zinc-200 rounded-full p-2 duration-500 ${
               !navShow ? "-rotate-[360deg]" : null
             }`}
           >
@@ -92,20 +77,68 @@ export default function MobileMenu() {
           </button>
         </div>
         <nav className="flex flex-col mt-6">
-          {data.map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              className="flex items-center gap-x-2 font-incognito font-semibold text-lg dark:shadow-line-dark shadow-line-light p-6 group"
-              onClick={onToggleNav}
-            >
-              <link.icon
-                className="text-zinc-500 group-hover:dark:text-white group-hover:text-zinc-800 duration-300"
-                aria-hidden="true"
-              />
-              {link.title}
-            </Link>
-          ))}
+          {NavLinks.map((link, index) => {
+            if (link.children) {
+              return (
+                <>
+                  <div className=" mt-1 px-4">
+                    <button
+                      onClick={() => setPopup(popup === index ? null : index)}
+                      className=" flex flex-row items-center px-4 py-3    text-gray-400  hover:text-blue-400"
+                    >
+                      {link.name}
+                      {link.children && (
+                        <MdKeyboardArrowDown
+                          className={`${
+                            popup === index ? "transform rotate-180" : ""
+                          }`}
+                          size={24}
+                        />
+                      )}
+                    </button>
+                    <div>
+                      {link.children && popup === index && (
+                        <div>
+                          <ul className=" flex flex-col gap-1.5">
+                            {link.children.map((child, i) => (
+                              <Link key={i + "child"} href={child.link}>
+                                <p
+                                  onClick={() => {
+                                    setPopup(null);
+                                    setNavShow(false);
+                                  }}
+                                  className=" block px-4 py-2 hover:text-gray-400 text-blue-400 "
+                                >
+                                  {child.name}
+                                </p>
+                                <div className="w-[90%]  bg-gray-800 h-[1px]"></div>
+                              </Link>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </>
+              );
+            } else {
+              return (
+                <div className=" px-8">
+                  <Link
+                    onClick={() => {
+                      setNavShow(false);
+                    }}
+                    key={index + "other"}
+                    style={{ textDecoration: "none" }}
+                    href={link.link}
+                    className=" text-gray-400 hover:text-blue-400 "
+                  >
+                    {link.name}
+                  </Link>
+                </div>
+              );
+            }
+          })}
         </nav>
       </div>
     </>
