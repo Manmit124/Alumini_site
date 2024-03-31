@@ -41,15 +41,15 @@ const NotableAlumniMarquee = () => {
       imageSrc: "/sliderimages/image1.jpg",
     },
     {
-      name: "John Doe",
-      position: "CTO at Tech Innovations",
+      name: "Vaibhav Pachbhai",
+      position: "CEO & founder of PYQ.com",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia augue at malesuada ultricies.",
       imageSrc: "/sliderimages/image1.jpg",
     },
     {
-      name: "Jane Smith",
-      position: "Marketing Director at ABC Corp",
+      name: "Sandesh Kolte",
+      position: "Founder of DesiSolution",
       description:
         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
       imageSrc: "/sliderimages/image1.jpg",
