@@ -10,6 +10,8 @@ import { FiSearch } from "react-icons/fi";
 const Page = () => {
   const [Branch, setBranch] = useState(null);
   const [Aluminis, setAluminis] = useState([]);
+  const [currentPopup, setCurrentPopup] = useState(null); // [id, type]
+
   useEffect(() => {
     fetchAlumini();
   }, []);
@@ -95,21 +97,26 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="   flex-row  justify-center gap-2 grid grid-rows-1 md:grid-cols-2 lg:grid-cols-4 ml-6">
+        <div className="   lg:px-10 md:p-8 p-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
 
 {Aluminis &&
   Aluminis?.map((Alumini,index) => (
     <>
-      <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 ">
-        <div className="  rounded-full overflow-hidden">
+      {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
+      <div className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full">
+<div className=" flex flex-row gap-5 hover:scale-95 transition p-4 py-6">
+
+        <div className="  lg:w-20 bg-cover  flex items-center justify-center md:w-16 w-14 lg:h-20 md:h-16 h-14 rounded-full overflow-hidden">
           <Image
             width={100}
             height={120}
             alt="Users image"
             src={Alumini?.image}
-            className="    object-cover "
+            className="     w-full object-cover lg:h-20 md:h-16 h-14"
           />
         </div>
+<div className=" text-sm font-medium flex-1">
+
         <div className=" flex flex-col ">
           <h1 className=" text-2xl text-white">{Alumini.FullName}</h1>
           <p className=" text-white">{Alumini.GraduationYear}</p>
@@ -119,6 +126,8 @@ const Page = () => {
             change my life and world also
           </p>
         </div>
+</div>
+</div>
       </div>
     </>
   ))}
