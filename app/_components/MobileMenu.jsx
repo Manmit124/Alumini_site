@@ -123,7 +123,7 @@ export default function MobileMenu() {
               );
             } else {
               return (
-                <div className=" px-8">
+                <div key={index} className=" px-8">
                   <Link
                     onClick={() => {
                       setNavShow(false);
