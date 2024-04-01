@@ -29,6 +29,8 @@ const EditProfile = () => {
     postalCode: "",
     city: "",
     country: "",
+    Company: "",
+    designation: "",
     WorkExperience: [{ Job: "", Company: "", Industry: "", startEndYear: "" }],
 
     bio: "",
@@ -41,7 +43,7 @@ const EditProfile = () => {
   const session = useSession();
   const userData = session.data?.user;
   const { status } = session;
-  const router=useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     console.log(session);
@@ -57,16 +59,14 @@ const EditProfile = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
-   
+
     if (response.ok) {
-      router.push("/profile")
+      router.push("/profile");
 
       return toast({
         title: "Your Profile has been updated successfully",
         variant: "outline",
       });
-     
-
     } else {
       return toast({
         title: "Please try again",
@@ -114,7 +114,7 @@ const EditProfile = () => {
     }));
   };
 
-  console.log(formData)
+  console.log(formData);
   const handleSocialChange = (event) => {
     const { name, value } = event.target;
 
@@ -144,7 +144,7 @@ const EditProfile = () => {
           {/* <div className="" style={{ marginLeft: "0" }}>
             {"#include {digitomize} > {personal}"}
           </div> */}
-          <button className=" px-2 py-3 bg-green-400" onClick={()=>signOut()}>
+          <button className=" px-2 py-3 bg-green-400" onClick={() => signOut()}>
             Signout
           </button>
         </div>
@@ -214,7 +214,10 @@ const EditProfile = () => {
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
               <div className="f w-full  ">
                 <Label htmlFor="dateOfBirth" className="label">
-                  <span className="label-text text-white"> Graduation Date</span>
+                  <span className="label-text text-white">
+                    {" "}
+                    Graduation Date
+                  </span>
                 </Label>
                 <div className="flex  items-center gap-3">
                   <Input
@@ -242,15 +245,28 @@ const EditProfile = () => {
                     onChange={handleInputChange}
                     className="bg-transparent text-white"
                   >
-                    <option value="" disabled>
+                    <option className=" bg-black text-white" value="" disabled>
                       Select your Branch
                     </option>
-                    <option value="CSE">Computer Science</option>imag
-                    <option value="Civil">Civil</option>
-                    <option value="ENTC">ENTC</option>
-                    <option value="Electrical">Electrical</option>
-                    <option value="Mechanical">Mechanical</option>
-                    <option value="Instr">Instrumentation</option>
+                    <option className=" bg-black text-white" value="CSE">
+                      Computer Science
+                    </option>
+                    imag
+                    <option className=" bg-black text-white" value="Civil">
+                      Civil
+                    </option>
+                    <option className=" bg-black text-white" value="ENTC">
+                      ENTC
+                    </option>
+                    <option className=" bg-black text-white" value="Electrical">
+                      Electrical
+                    </option>
+                    <option className=" bg-black text-white" value="Mechanical">
+                      Mechanical
+                    </option>
+                    <option className=" bg-black text-white" value="Instr">
+                      Instrumentation
+                    </option>
                   </select>
 
                   {/* <Select
@@ -285,15 +301,23 @@ const EditProfile = () => {
                   <span className=" text-white">Street Address</span>
                 </Label>
                 <div className="flex  items-center gap-3">
-                  <Input
-                    type="text"
-                    id="streetAddress"
-                    name="streetAddress"
-                    value={formData.streetAddress}
+                  <select
+                    name="Degree"
+                    value={formData.Degree}
                     onChange={handleInputChange}
-                    placeholder="Enter Your street address"
-                    className=" input-w-full max-w-lg  bg-transparent text-white"
-                  />
+                    className="bg-transparent text-white"
+                  >
+                    <option className=" bg-black text-white" value="" disabled>
+                      Select your Degree
+                    </option>
+                    <option className=" bg-black text-white" value="B.Tech">
+                      B.Tech
+                    </option>
+
+                    <option className="  bg-black text-white" value="M.Tech">
+                      M.Tech
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -345,90 +369,94 @@ const EditProfile = () => {
                   <span className=" text-white">Country </span>
                 </Label>
                 <div className="flex  items-center gap-3 ">
-                  <Select
+                  <select
                     name="country"
-                    value={formData.country}
-                    onValueChange={handleInputChange}
-                    // defaultValue={formData.country}
+                    value={formData?.country}
+                    onChange={handleInputChange}
                     className="bg-transparent text-white"
                   >
-                    <SelectTrigger className="bg-transparent text-white">
-                      <SelectValue placeholder="Select your country" />
-                    </SelectTrigger>
-                    <SelectContent
-                      onChange={handleInputChange}
-                      name="country"
-                      className="bg-transparent text-white  "
-                    >
-                      <SelectItem value="US">United States</SelectItem>
-                      <SelectItem value="CN">China</SelectItem>
-                      <SelectItem value="IN">India</SelectItem>
-                      <SelectItem value="ID">Indonesia</SelectItem>
-                      <SelectItem value="PK">Pakistan</SelectItem>
-                      <SelectItem value="BR">Brazil</SelectItem>
-                      <SelectItem value="NG">Nigeria</SelectItem>
-                      <SelectItem value="BD">Bangladesh</SelectItem>
-                      <SelectItem value="RU">Russia</SelectItem>
-                      <SelectItem value="MX">Mexico</SelectItem>
-                      <SelectItem value="JP">Japan</SelectItem>
-                      <SelectItem value="PH">Philippines</SelectItem>
-                      <SelectItem value="EG">Egypt</SelectItem>
-                      <SelectItem value="ET">Ethiopia</SelectItem>
-                      <SelectItem value="VN">Vietnam</SelectItem>
-                      <SelectItem value="CD">DR Congo</SelectItem>
-                      <SelectItem value="IR">Iran</SelectItem>
-                      <SelectItem value="TR">Turkey</SelectItem>
-                      <SelectItem value="DE">Germany</SelectItem>
-                      <SelectItem value="FR">France</SelectItem>
-                      <SelectItem value="GB">United Kingdom</SelectItem>
-                      <SelectItem value="IT">Italy</SelectItem>
-                      <SelectItem value="ZA">South Africa</SelectItem>
-                      <SelectItem value="KR">South Korea</SelectItem>
-                      <SelectItem value="ES">Spain</SelectItem>
-                      <SelectItem value="AR">Argentina</SelectItem>
-                      <SelectItem value="UA">Ukraine</SelectItem>
-                      <SelectItem value="CA">Canada</SelectItem>
-                      <SelectItem value="AU">Australia</SelectItem>
-                      <SelectItem value="SA">Saudi Arabia</SelectItem>
-                      <SelectItem value="PL">Poland</SelectItem>
-                      <SelectItem value="MY">Malaysia</SelectItem>
-                      <SelectItem value="NL">Netherlands</SelectItem>
-                      <SelectItem value="CO">Colombia</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <option className=" bg-black text-white" value="" disabled>
+                      Select your Country
+                    </option>
+                    <option className=" bg-black text-white" value="India">
+                      India
+                    </option>
+
+                    <option className="  bg-black text-white" value="USA">
+                      USA
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
-            {/* 
+
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
               <div className="f w-full  ">
                 <Label htmlFor="dateOfBirth" className="label">
-                  <span className=" text-white">Job Role</span>
+                  <span className=" text-white">Street Address</span>
                 </Label>
                 <div className="flex  items-center gap-3">
                   <Input
                     type="text"
-                    id="job_role"
-                    name="job_role"
-                      // value={formData.dateOfBirth.data}
-                      // onChange={handleInputChange}
-                    placeholder="Enter Your Current Job Role"
-                    className=" input-w-full bg-transparent text-white max-w-lg "
+                    id="streetAddress"
+                    name="streetAddress"
+                    value={formData.streetAddress}
+                    onChange={handleInputChange}
+                    placeholder="Enter Your street address"
+                    className=" input-w-full max-w-lg  bg-transparent text-white"
                   />
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
 
           {/* work experience */}
           <Label className="text-white text-2xl">Work Experience</Label>
+          <div className="grid md:grid-cols-2 mx-auto">
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="form-control w-full ">
+                <Label htmlFor="Company" className=" text-white">
+                  Company
+                </Label>
+                <div className="flex  items-center gap-3 ">
+                  <Input
+                    type="text"
+                    name="Company"
+                    id="Company"
+                    // placeholder="manmittiwade124@gmail.com"
+                    value={formData?.Company}
+                    onChange={handleInputChange}
+                    className=" bg-transparent text-white w-full max-w-lg "
+                  />
+                </div>
+              </div>
+            </div>
 
-          <WorkExperince
+            <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
+              <div className="f w-full  ">
+                <Label htmlFor="dateOfBirth" className="label">
+                  <span className="label-text text-white"> Designation</span>
+                </Label>
+                <div className="flex  items-center gap-3">
+                  <Input
+                    type="text"
+                    name="designation"
+                    value={formData?.designation}
+                    onChange={handleInputChange}
+                    placeholder="Type here"
+                    className=" input-w-full max-w-lg   bg-transparent text-white"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <WorkExperince
             experiences={formData.WorkExperience}
             handleExperienceChange={handleExperienceChange}
             handleAddExperience={handleAddExperience}
             handleRemoveExperience={handleRemoveExperience}
-          />
+          /> */}
 
           <div className="flex flex-col md:flex-row  items-start gap-5  mb-10 mt-9">
             <div className="relative z-0 w-full md:w-3/4 mb-5  group flex items-center gap-3">

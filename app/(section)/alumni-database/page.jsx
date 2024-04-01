@@ -1,4 +1,5 @@
 "use client";
+import PopupAlumniCad from "@/app/_components/Alumini/PopupAlumniCad";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Branches } from "@/config/config";
@@ -11,6 +12,7 @@ const Page = () => {
   const [Branch, setBranch] = useState(null);
   const [Aluminis, setAluminis] = useState([]);
   const [currentPopup, setCurrentPopup] = useState(null); // [id, type]
+  const [selectedAlumni, setSelectedAlumni] = useState(null);
 
   useEffect(() => {
     fetchAlumini();
@@ -21,7 +23,13 @@ const Page = () => {
     console.log(FetchAlumini);
     setAluminis(FetchAlumini);
   };
-
+  const openModal = (Alumini) => {
+    setSelectedAlumni(Alumini);
+    // setIsModalOpen(true);
+    // console.log("cliked");
+    // console.log(isModalOpen);
+    // console.log(selectedProject);
+  };
 
   // const [searchParams, setSearchParams] = useSearchParams({
   //   role: null,
@@ -38,9 +46,8 @@ const Page = () => {
       <div className=" flex  flex-col justify-center items-center  mt-28">
         <h1 className=" text-white text-2xl">Search Alumni </h1>
         <h5 className="lg:text-2xl md:text-xl text-lg font-bold pb-2">
-          <span className=" text-white">
-            Type:
-          </span><span className="text-rose-500">role</span>
+          <span className=" text-white">Type:</span>
+          <span className="text-rose-500">role</span>
         </h5>
         <div className="lg:w-[80%] w-full md:px-6 px-3 mt-5  m-auto relative flex md:gap-3 gap-2 items-center ">
           <div className=" flex-1 relative w-full">
@@ -96,42 +103,76 @@ const Page = () => {
             ))}
           </div>
         </div>
-
+{selectedAlumni!== null && <PopupAlumniCad person={selectedAlumni} close={()=>setCurrentPopup(null)}/>}
         <div className="   lg:px-10 md:p-8 p-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+          {Aluminis &&
+            Aluminis?.map((Alumini, index) => (
+              <>
+                {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
+                <div
+                onClick={()=>(openModal(Alumini), setCurrentPopup(index))}
+                key={index}
+                 className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full">
+                  <div className=" flex flex-row gap-5 hover:scale-95 transition p-4 py-6">
+                    <div className="  lg:w-20 bg-cover  flex items-center justify-center md:w-16 w-14 lg:h-20 md:h-16 h-14 rounded-full overflow-hidden">
+                      <Image
+                        width={100}
+                        height={120}
+                        alt="Users image"
+                        src={
+                          Alumini?.image
+                            ? Alumini?.image
+                            : "/profile/placeholder.png"
+                        }
+                        className="     w-full object-cover lg:h-20 md:h-16 h-14"
+                      />
+                    </div>
+                    <div className=" text-sm font-medium flex-1">
+                      <div className=" flex flex-col ">
+                        <h1 className=" text-2xl text-sky-500">
+                          {Alumini?.FullName}
+                        </h1>
+                        <p className=" gap-1 text-white">
+                        <span className=" text-gray-400">Branch:</span>
+                          {Alumini?.Branch}({Alumini?.Degree})
+                        </p>
+                        {Alumini?.GraduationYear && (
+                          <p className=" text-white">
+                            <span className="  text-gray-400">Batch:</span>
+                            {Alumini?.GraduationYear}
+                          </p>
+                        )}
+                        {Alumini.Company && (
+                          <p className=" text-white">
+                            <span className="text-gray-400">Company:</span>{" "}
+                            {Alumini?.Company}
+                          </p>
+                        )}
+                        {Alumini.designation && (
+                          <p className=" text-white">
+                            <span className="text-gray-400">Designation:</span>{" "}
+                            {Alumini?.designation}
+                          </p>
+                        )}
+                        {Alumini?.bio && (
+                          <p className=" text-white">
+                            <span className="text-gray-400">Bio:</span>{" "}
+                            {Alumini?.bio.slice(0,80)}
+                          </p>
+                        )}
 
-{Aluminis &&
-  Aluminis?.map((Alumini,index) => (
-    <>
-      {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
-      <div className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full">
-<div className=" flex flex-row gap-5 hover:scale-95 transition p-4 py-6">
-
-        <div className="  lg:w-20 bg-cover  flex items-center justify-center md:w-16 w-14 lg:h-20 md:h-16 h-14 rounded-full overflow-hidden">
-          <Image
-            width={100}
-            height={120}
-            alt="Users image"
-            src={Alumini?.image ? Alumini?.image : "/profile/placeholder.png"}
-            className="     w-full object-cover lg:h-20 md:h-16 h-14"
-          />
+                        {/* <p className=" text-white   text-sm t">
+                          {" "}
+                          Passionate Fullstack web developer is with great
+                          vision to change my life and world also
+                        </p> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ))}
         </div>
-<div className=" text-sm font-medium flex-1">
-
-        <div className=" flex flex-col ">
-          <h1 className=" text-2xl text-white">{Alumini.FullName}</h1>
-          <p className=" text-white">{Alumini.GraduationYear}</p>
-          <p className=" text-white   text-sm t">
-            {" "}
-            Passionate Fullstack web developer is with great vision to
-            change my life and world also
-          </p>
-        </div>
-</div>
-</div>
-      </div>
-    </>
-  ))}
-</div>
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ const UserSchema = new Schema(
     MobileNumber: { type: String },
     Degree: { type: String },
     Branch: { type: String },
+    designation:{type:String},
+    Company:{type:String},
     WorkExperience: [
       {
         Job: {

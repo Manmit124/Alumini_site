@@ -22,7 +22,7 @@ const Page = () => {
   const { loading, data } = Userprofile();
 
   return (
-    <div className="max-phone:hidden w-11/12 mx-auto mt-4 max-w-8xl">
+    <div className="max-phone:hidden  w-11/12 mx-auto mt-4 max-w-8xl">
       <div className=" flex flex-row justify-between ">
         {/* <h1 className="pb-4 normal-case text-[#F0ECE5]">Hey,{data.username}👋</h1> */}
         <div className="  mt-20 ">
