@@ -111,7 +111,7 @@ const Page = () => {
             width={100}
             height={120}
             alt="Users image"
-            src={Alumini?.image}
+            src={Alumini?.image ? Alumini?.image : "/profile/placeholder.png"}
             className="     w-full object-cover lg:h-20 md:h-16 h-14"
           />
         </div>

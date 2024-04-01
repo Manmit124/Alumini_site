@@ -148,7 +148,7 @@ const EditProfile = () => {
             Signout
           </button>
         </div>
-        <div className=" bg-transparent w-full p-8">
+        <div className=" bg-[#000000] w-full p-8">
           {/* first row */}
           <Label className="text-white text-2xl">Personal Info</Label>
           <div className=" grid md:grid-cols-2  mx-auto ">
@@ -160,7 +160,7 @@ const EditProfile = () => {
                     type="text"
                     name="FullName"
                     id="name"
-                    placeholder="Enter your phone number"
+                    placeholder="Enter your Name"
                     //   value={}
                     value={formData.FullName}
                     onChange={handleInputChange}
@@ -214,7 +214,7 @@ const EditProfile = () => {
             <div className="relative z-0 w-full md:w-3/4 mb-12 group flex items-center gap-3">
               <div className="f w-full  ">
                 <Label htmlFor="dateOfBirth" className="label">
-                  <span className="label-text"> Graduation Date</span>
+                  <span className="label-text text-white"> Graduation Date</span>
                 </Label>
                 <div className="flex  items-center gap-3">
                   <Input
