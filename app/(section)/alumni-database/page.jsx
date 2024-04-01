@@ -18,10 +18,14 @@ const Page = () => {
     fetchAlumini();
   }, []);
   const fetchAlumini = async () => {
-    const response = await fetch("/api/users");
-    const FetchAlumini = await response.json();
-    console.log(FetchAlumini);
-    setAluminis(FetchAlumini);
+    try {
+      const response = await fetch("/api/users");
+      const FetchAlumini = await response.json();
+      console.log(FetchAlumini);
+      setAluminis(FetchAlumini);
+    } catch (error) {
+      console.error(error);
+    }
   };
   const openModal = (Alumini) => {
     setSelectedAlumni(Alumini);
@@ -103,16 +107,22 @@ const Page = () => {
             ))}
           </div>
         </div>
-{selectedAlumni!== null && <PopupAlumniCad person={selectedAlumni} close={()=>setCurrentPopup(null)}/>}
+        {selectedAlumni !== null && (
+          <PopupAlumniCad
+            person={selectedAlumni}
+            close={() => setCurrentPopup(null)}
+          />
+        )}
         <div className="   lg:px-10 md:p-8 p-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {Aluminis &&
             Aluminis?.map((Alumini, index) => (
               <>
                 {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
                 <div
-                onClick={()=>(openModal(Alumini), setCurrentPopup(index))}
-                key={index}
-                 className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full">
+                  onClick={() => (openModal(Alumini), setCurrentPopup(index))}
+                  key={index}
+                  className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full"
+                >
                   <div className=" flex flex-row gap-5 hover:scale-95 transition p-4 py-6">
                     <div className="  lg:w-20 bg-cover  flex items-center justify-center md:w-16 w-14 lg:h-20 md:h-16 h-14 rounded-full overflow-hidden">
                       <Image
@@ -133,7 +143,7 @@ const Page = () => {
                           {Alumini?.FullName}
                         </h1>
                         <p className=" gap-1 text-white">
-                        <span className=" text-gray-400">Branch:</span>
+                          <span className=" text-gray-400">Branch:</span>
                           {Alumini?.Branch}({Alumini?.Degree})
                         </p>
                         {Alumini?.GraduationYear && (
@@ -157,7 +167,7 @@ const Page = () => {
                         {Alumini?.bio && (
                           <p className=" text-white">
                             <span className="text-gray-400">Bio:</span>{" "}
-                            {Alumini?.bio.slice(0,80)}
+                            {Alumini?.bio.slice(0, 80)}
                           </p>
                         )}
 
