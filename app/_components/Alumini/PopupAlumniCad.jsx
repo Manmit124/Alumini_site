@@ -17,7 +17,7 @@ const PopupAlumniCad = ({ person, close }) => {
         <button className="absolute top-6 right-6" onClick={close}>
           <FiX
             size={24}
-            className="hover:scale-105 transition hover:text-gray-400"
+            className="hover:scale-105 transition text-gray-400"
           />
         </button>
         <div className="lg:w-24 bg-cover flex items-center justify-center md:w-20 w-16 lg:h-24 md:h-20 h-16 rounded-full overflow-hidden">

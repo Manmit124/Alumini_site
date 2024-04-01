@@ -110,7 +110,7 @@ const Page = () => {
         {selectedAlumni !== null && (
           <PopupAlumniCad
             person={selectedAlumni}
-            close={() => setCurrentPopup(null)}
+            close={() => setSelectedAlumni(null)}
           />
         )}
         <div className="   lg:px-10 md:p-8 p-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
