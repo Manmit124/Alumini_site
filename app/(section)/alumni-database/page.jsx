@@ -21,10 +21,12 @@ const Page = () => {
     try {
       const response = await fetch("/api/users");
       const FetchAlumini = await response.json();
-      console.log(FetchAlumini);
+      setAluminis([]);
       setAluminis(FetchAlumini);
     } catch (error) {
       console.error(error);
+    } finally {
+      console.log("done");
     }
   };
   const openModal = (Alumini) => {
