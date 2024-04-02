@@ -94,7 +94,7 @@ const Footer = () => {
       <div className="w-[90%] m-[auto] bg-gray-800 h-[1px]"></div>
       <div className="m-[auto] py-7 text-gray-500 font-medium text-sm gap-4 flex flex-col md:flex-row lg:flex-row justify-between items-center w-[90%]">
         <p>GCOEC, All Rights Reserved.</p>
-        <p className="flex items-center gap-1">
+        {/* <p className="flex items-center gap-1">
           <span className="md:block hidden">Designed & Developed</span>{" "}
           <span className="md:hidden block">Designed</span>
           <span>
@@ -108,7 +108,7 @@ const Footer = () => {
             </Link>
             .
           </span>
-        </p>
+        </p> */}
       <BackToTopButton />
       </div>
 
