@@ -30,6 +30,7 @@ export async function GET(req) {
   try {
     ConnectDB();
     const url = new URL(req.url);
+    console.log(url)
     const _id = url.searchParams.get("_id");
     let filterUser = {};
     if (_id) {

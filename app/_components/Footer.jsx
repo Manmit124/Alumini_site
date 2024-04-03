@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <div
       data-aos="fade-in"
-      className="bg-[#09090b] text-sm w-[100%] mt-[10rem]"
+      className="bg-[#09090b] text-sm w-[100%] "
     >
       <div className="mb-10 w-[90%] grid gap-2 md:gap-4 lg:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 m-[auto] items-start justify-items-center">
         <div className="mt-10 w-[100%] md:w-[100%] lg:w-[100%] order-1 md:order-1 lg:order-1">

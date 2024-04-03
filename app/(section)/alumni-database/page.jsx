@@ -15,13 +15,13 @@ const Page = () => {
   const [selectedAlumni, setSelectedAlumni] = useState(null);
 
   useEffect(() => {
-    
     const fetchAlumini = async () => {
       try {
         const response = await fetch("/api/users");
         const FetchAlumini = await response.json();
         setAluminis([]);
         setAluminis(FetchAlumini);
+        console.log(FetchAlumini);
       } catch (error) {
         console.error(error);
       } finally {
@@ -31,7 +31,7 @@ const Page = () => {
 
     fetchAlumini();
   }, []);
- 
+
   const openModal = (Alumini) => {
     setSelectedAlumni(Alumini);
     // setIsModalOpen(true);
@@ -134,6 +134,7 @@ const Page = () => {
                         width={100}
                         height={120}
                         alt="Users image"
+                        loading="lazy"
                         src={
                           Alumini?.image
                             ? Alumini?.image

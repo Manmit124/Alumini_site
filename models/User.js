@@ -65,6 +65,10 @@ const UserSchema = new Schema(
         type: String,
         default: null,
       },
+      website: {
+        type: String,
+        default: null,
+      },
     },
     resetToken: {
       type: String,

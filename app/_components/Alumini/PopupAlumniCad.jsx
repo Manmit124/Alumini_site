@@ -1,38 +1,41 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import {
-  FaLinkedin,
   FaFacebook,
-  FaInstagram,
   FaGithub,
   FaGlobe,
   FaTwitter,
 } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { FiX } from "react-icons/fi";
 
 const PopupAlumniCad = ({ person, close }) => {
   return (
     <div className="fixed z-[25] inset-0 bg-black bg-opacity-30 backdrop-blur-sm w-full flex justify-center items-center">
-      <div className="flex lg:w-[32rem] md:w-[28rem] w-full mx-6 flex-col gap-3 p-6 py-6 bg-black border border-gray-900 max-w-lg rounded-2xl relative shadow-lg">
+      <div className="flex  lg:w-[32rem] md:w-[28rem] w-full mx-6 flex-col gap-3 p-6 py-6 bg-black border border-gray-900 max-w-lg rounded-2xl relative shadow-lg">
         <button className="absolute top-6 right-6" onClick={close}>
-          <FiX
-            size={24}
-            className="hover:scale-105 transition text-gray-400"
-          />
+          <FiX size={24} className="hover:scale-105 transition text-gray-400" />
         </button>
-        <div className="lg:w-24 bg-cover flex items-center justify-center md:w-20 w-16 lg:h-24 md:h-20 h-16 rounded-full overflow-hidden">
-          <img
+        <div className="lg:w-24 bg-cover    flex items-center justify-center md:w-20 w-16 lg:h-24 md:h-20 h-16 rounded-full overflow-hidden">
+          <Image
             id={person.$id}
             className="w-full object-cover lg:h-24 md:h-20 h-16"
             src={person.image ? person?.image : "/profile/placeholder.png"}
             alt={person.FullName}
+            loading="lazy"
+            width={100}
+            height={120}
+           
           />
         </div>
 
         <div className="text-sm font-medium flex-1">
-          <p className="text-xl font-bold text-sky-500">
-            {person.FullName}
-          </p>
+          <p className="text-xl font-bold text-sky-500">{person.FullName}</p>
           <p className="font-medium text-base text-gray-300">
             {person.Branch} ({person.Degree})
           </p>
@@ -97,42 +100,40 @@ const PopupAlumniCad = ({ person, close }) => {
             {person.bio ? person.bio : person.work_info}
           </p>
 
-          {person.batchEnd && (
-            <p>
-              <span className="text-gray-400">Batch:</span>{" "}
-              {person.batchStart
-                ? person.batchStart + "-" + person.batchEnd
-                : person.batchEnd}
+          {person.GraduationYear && (
+            <p className=" text-white">
+              <span className="text-gray-400">Graduation Year:</span>{" "}
+             {person.GraduationYear}
             </p>
           )}
-          {person.company && (
-            <p>
-              <span className="text-gray-400">Company:</span> {person.company}
+          {person.Company && (
+            <p className=" text-white">
+              <span className="text-gray-400">Company:</span> {person.Company}
             </p>
           )}
           {person.designation && (
-            <p>
+            <p className=" text-white">
               <span className="text-gray-400">Designation:</span>{" "}
               {person.designation}
             </p>
           )}
 
-          {person.showPhone && (
-            <p>
+          {person.MobileNumber && (
+            <p className="  text-white">
               <span className="text-gray-400">Phone:</span>{" "}
               <a
                 target="_blank"
                 className="text-sky-500"
-                href={`tel:${person.phone}`}
+                href={`tel:${person.MobileNumber}`}
               >
-                {person.phone}
+                {person.MobileNumber}
               </a>
             </p>
           )}
 
-          {person.showEmail && (
+          {person.email && (
             <p>
-              <span className="text-gray-400">EmailId:</span>{" "}
+              <span className="text-gray-400">Email_Id:</span>{" "}
               <a
                 target="_blank"
                 className="text-sky-500"
@@ -149,7 +150,42 @@ const PopupAlumniCad = ({ person, close }) => {
               {person.interests}
             </p>
           )}
+          <div
+              className={`pt-8 flex justify-center gap-3 ${
+                person.social ? "" : "hidden"
+              }`}
+            >
+              {person.social?.linkedin && (
+                <a
+                  href={person.social?.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaLinkedin size={30} color="white" />
+                </a>
+              )}
 
+              {person.social?.instagram && (
+                <a
+                  href={person.social?.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FaInstagram size={30} color="white" />
+                </a>
+              )}
+              {person.social?.twitter && (
+                <a href={person.social?.twitter} target="_blank" rel="noreferrer">
+                  <FaXTwitter size={30} color="white" />
+                </a>
+              )}
+              {person.social?.website && (
+                <a href={person.social?.website} target="_blank" rel="noreferrer">
+                  <FaGlobe className=" hover:bg-green-500" size={30} color="white" />
+                </a>
+              )}
+            </div>
+          
           {/* {person.hobbies.length !== 0 && (
             <p>
               <span className="text-gray-400">Interests:</span>{" "}

@@ -19,6 +19,9 @@ const UserCard = () => {
     setShowMore(!showMore);
   };
   const truncatedBio = showMore ? data?.bio : data?.bio?.slice(0, 80);
+  if(loading){
+    return <h1>...Loading</h1>
+  }
 
   return (
     <div className="rounded-2xl bg-eerie-black-2  shadow-md flex flex-col h-fit p-12 border border-jet   lg:w-[25rem]">
@@ -27,29 +30,13 @@ const UserCard = () => {
         <>
           <div className="flex w-full justify-center">
             <Image
-              src={data?.image}
+              src={data?.image ? data?.image : "/profile/placeholder.png" }
               width={100}
               height={100}
               alt=""
               className="rounded-full  w-[90px] h-[90px]"
             />
-            {/* { data.image ? (
-              <Avatar>
-                <AvatarImage src={data.image} alt="logo" />
-                <AvatarFallback>
-                  <FaUserGraduate />
-                </AvatarFallback>
-              </Avatar>
-            ) : (
-              <Avatar
-                sx={{ width: 100, height: 96, padding: 0 }}
-                color="primary"
-              >
-                <AvatarFallback>
-                  <FaUserGraduate className=" text-2xl" />
-                </AvatarFallback>
-              </Avatar>
-            )} */}
+            
           </div>
 
           <div className="flex flex-col items-center gap-[8px] p-0">
@@ -59,7 +46,7 @@ const UserCard = () => {
               </h1>
               <div className=" text-center">
                 <div className="  bg-[#9ACD32] text-black  rounded-xl">
-                  Employee
+                  {data?.designation}
                 </div>
               </div>
               <div className="skills text-center pt-2"></div>

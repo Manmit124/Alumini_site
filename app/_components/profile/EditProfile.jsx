@@ -1,18 +1,13 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import React, { use, useEffect, useState } from "react";
 import WorkExperince from "./WorkExperince";
 import { Textarea } from "@/components/ui/textarea";
 import NewImageUploader from "@/utils/NewImageUploader";
-import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGlobe, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { signOut, useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -38,6 +33,7 @@ const EditProfile = () => {
       linkedin: "",
       twitter: "",
       instagram: "",
+      website: "",
     },
   });
   const session = useSession();
@@ -144,9 +140,6 @@ const EditProfile = () => {
           {/* <div className="" style={{ marginLeft: "0" }}>
             {"#include {digitomize} > {personal}"}
           </div> */}
-          <button className=" px-2 py-3 bg-green-400" onClick={() => signOut()}>
-            Signout
-          </button>
         </div>
         <div className=" bg-[#000000] w-full p-8">
           {/* first row */}
@@ -536,6 +529,17 @@ const EditProfile = () => {
                 name="twitter"
                 value={formData.social.twitter}
                 placeholder="Twitter URL"
+                onChange={handleSocialChange}
+                className="bg-transparent text-white sm:w-2/6 md:w-2/5"
+              />
+            </div>
+            <div className="flex gap-4 items-center">
+              <FaGlobe size={40} className=" text-green-500" />
+              <Input
+                type="text"
+                name="website"
+                value={formData.social.website}
+                placeholder="personal website"
                 onChange={handleSocialChange}
                 className="bg-transparent text-white sm:w-2/6 md:w-2/5"
               />
