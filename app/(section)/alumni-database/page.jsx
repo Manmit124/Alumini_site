@@ -15,20 +15,23 @@ const Page = () => {
   const [selectedAlumni, setSelectedAlumni] = useState(null);
 
   useEffect(() => {
+    
+    const fetchAlumini = async () => {
+      try {
+        const response = await fetch("/api/users");
+        const FetchAlumini = await response.json();
+        setAluminis([]);
+        setAluminis(FetchAlumini);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        console.log("done");
+      }
+    };
+
     fetchAlumini();
   }, []);
-  const fetchAlumini = async () => {
-    try {
-      const response = await fetch("/api/users");
-      const FetchAlumini = await response.json();
-      setAluminis([]);
-      setAluminis(FetchAlumini);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      console.log("done");
-    }
-  };
+ 
   const openModal = (Alumini) => {
     setSelectedAlumni(Alumini);
     // setIsModalOpen(true);
