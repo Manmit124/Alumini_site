@@ -175,7 +175,7 @@ const Committee = [
     Qualification: "B.E, M.Tech",
     Experience: "25 Years",
     email: "dhirajkapoor@gcoec.ac.in",
-    image: "/commitee/img-kapoor1.png"
+    image: "/commitee/kapoor.png"
   },
   {
     name: "Prof. Kranti S. Bhokare",
