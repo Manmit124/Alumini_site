@@ -22,7 +22,7 @@ import Navbar from "@/app/_components/Navbar";
 const Page = () => {
   const { loading, data } = Userprofile();
   if(loading){
-    return <h1>..Loading</h1>
+    return <h1 className="text-white">..Loading</h1>
   }
 
   return (
