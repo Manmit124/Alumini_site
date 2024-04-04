@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 const Page = () => {
+  const [loading, setLoading] = useState(false);
   const [Branch, setBranch] = useState(null);
   const [Aluminis, setAluminis] = useState([]);
   const [currentPopup, setCurrentPopup] = useState(null); // [id, type]
@@ -16,6 +17,7 @@ const Page = () => {
 
   useEffect(() => {
     const fetchAlumini = async () => {
+      setLoading(true)
       try {
         const response = await fetch("/api/users");
         const FetchAlumini = await response.json();
@@ -24,8 +26,8 @@ const Page = () => {
         console.log(FetchAlumini);
       } catch (error) {
         console.error(error);
-      } finally {
-        console.log("done");
+      }finally{
+        setLoading(false);
       }
     };
 
@@ -112,6 +114,9 @@ const Page = () => {
             ))}
           </div>
         </div>
+        {loading&& (
+        <h1 className=" text-white">Loading.....</h1>
+        )}
         {selectedAlumni !== null && (
           <PopupAlumniCad
             person={selectedAlumni}

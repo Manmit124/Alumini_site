@@ -5,13 +5,13 @@ import Link from 'next/link'
 import React from 'react'
 import { IoSettingsOutline } from 'react-icons/io5'
 
-const EventCard = () => {
+const EventCard = ({data}) => {
   return (
     <div>
        <Card className=" max-w-sm  w-full bg-black border-2 hover:border-gray-800 border-gray-900">
               <CardHeader className="p-4 flex items-center mt-0  ">{/* {cardHeader}  */}
               
-            <Image src={"/sliderimages/image1.jpg"} width={300} height={400} className=' ' />
+            <Image src={data?.img} width={300} height={400} className=' ' />
               </CardHeader>
 
               <CardContent className="   ">

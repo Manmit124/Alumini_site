@@ -84,6 +84,10 @@
       name: "About GCOEC",
       children: [
         {
+          name: "Executive Committee",
+          link: "/executive-commitee",
+        },
+        {
           name: "About GCOEC",
           link: "/about",
         },
@@ -135,4 +139,63 @@
     }
   
 ]
-  export { footerConfig, NavLinks,Branches };
+const Committee = [
+  {
+    name: "Dr. P. V. Washimkar",
+    Designation: "ASSOCIATE PROFESSOR",
+    Role:"President",
+    Experience: "26 Years",
+    // Qulification:"B.E., M. Tech., Ph.D.",
+    email: "prashantwashimkar@gcoec.ac.in",
+    image: "/commitee/principle.jpeg"
+  },
+ 
+  {
+    name: "Chilbule Pawan Vinayak",
+    Role:"Faculty Incharge",
+    Designation: "ASSISTANT PROFESSOR",
+    Qualification: "B.E, M.Tech",
+    Experience: "12 Years",
+    email: "pavan_chilbule@yahoo.com",
+    image: "/commitee/chilbule.jpg"
+  },
+  {
+    name: "Prof. Nishant M. Yewale",
+    Role:"Secretary",
+    Designation: "Assistant Professor",
+    Qualification: "B.E. Instrumentation Engg. M. Tech.",
+    Experience: "19 Years",
+    email: "nishantyewale78@gmail.com",
+    image: "/commitee/Yewale.jpg"
+  },
+  {
+    name: "KAPOOR DHIRAJ PRAKASH",
+    Role:"Treasurer",
+    Designation: "ASSISTANT PROFESSOR",
+    Qualification: "B.E, M.Tech",
+    Experience: "25 Years",
+    email: "dhirajkapoor@gcoec.ac.in",
+    image: "/commitee/img-kapoor1.png"
+  },
+  {
+    name: "Prof. Kranti S. Bhokare",
+    Role:"Member-1",
+    Designation: "Assistant Professor",
+    Qualification: "B.E. Instrumentation Engg. M. Tech. (EMS)",
+    Experience: "20 Years",
+    email: "kranti3@rediffmail.com",
+    image: "/commitee/Kranti.jpg"
+  },
+  {
+    name: "Ms. Sharana Tarannum",
+    Role:"Member-2",
+    Designation: "Assistant Professor",
+    Qualification: "M.Tech.(Electrical Power Systems)",
+    Experience: "6 years",
+    email: "sharana.sheikh@gmail.com",
+    image: "/commitee/sharana.jpg"
+  },
+];
+
+
+  export { footerConfig, NavLinks,Branches,Committee };

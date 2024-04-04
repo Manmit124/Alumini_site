@@ -12,21 +12,21 @@ const Events = () => {
     // });
     const data = [
         {
-          imageURL: "https://example.com/image1.jpg",
+          img: "/Home/Event/Event1.jpeg",
           title: "Event Title 1",
           organizer: "Event Organizer 1",
           date: "Event Date 1",
           venue: "Event Venue 1"
         },
         {
-          imageURL: "https://example.com/image2.jpg",
+          img: "/Home/Event/Event2.jpeg",
           title: "Event Title 2",
           organizer: "Event Organizer 2",
           date: "Event Date 2",
           venue: "Event Venue 2"
         },
         {
-          imageURL: "https://example.com/image2.jpg",
+          img: "/Home/Event/Event3.jpeg",
           title: "Event Title 2",
           organizer: "Event Organizer 2",
           date: "Event Date 2",

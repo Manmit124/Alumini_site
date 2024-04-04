@@ -32,7 +32,7 @@ const Page = () => {
     <div className="  w-11/12  mx-auto max-w-8xl min-h-screen flex justify-center items-center">
       <div className=" flex  ">
         {/* <h1 className="pb-4 normal-case text-[#F0ECE5]">Hey,{data.username}👋</h1> */}
-        <Suspense fallback={<h1 className=" text-red-900">Loading ...</h1>}>
+        <Suspense fallback={<h1 className=" mx-auto min-h-screen flex justify-center items-center text-red-900">Loading ...</h1>}>
 
           <UserCard />
         </Suspense>
