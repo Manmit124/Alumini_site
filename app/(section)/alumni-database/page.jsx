@@ -125,7 +125,7 @@ const Page = () => {
                 {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
                 <div
                   onClick={() => (openModal(Alumini), setCurrentPopup(index))}
-                  key={index}
+                  key={Alumini?._id}
                   className="rounded-xl border hover:bg-[#101010] hover:border-gray-700 hover:border-l-sky-400  border-gray-900 cursor-pointer bg-[#000000] border-l-[#7042f88b] border-l-4 shadow-lg w-full"
                 >
                   <div className=" flex flex-row gap-5 hover:scale-95 transition p-4 py-6">

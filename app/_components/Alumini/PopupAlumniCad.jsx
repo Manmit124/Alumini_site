@@ -40,7 +40,7 @@ const PopupAlumniCad = ({ person, close }) => {
             {person.Branch} ({person.Degree})
           </p>
 
-          <div className="flex gap-3 items-center">
+          {/* <div className="flex gap-3 items-center">
             {person.linkedin && (
               <Link to={person.linkedin} target="_blank">
                 <FaLinkedin
@@ -90,11 +90,11 @@ const PopupAlumniCad = ({ person, close }) => {
               <Link to={person.website} target="_blank">
                 <FaGlobe
                   size={20}
-                  className="hover:scale-105 transition hover:text-gray-400"
+                  className="hover:scale-105 transition  "
                 />
               </Link>
             )}
-          </div>
+          </div> */}
 
           <p className="font-medium text-sm text-gray-300 py-2">
             {person.bio ? person.bio : person.work_info}
@@ -161,7 +161,7 @@ const PopupAlumniCad = ({ person, close }) => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FaLinkedin size={30} color="white" />
+                  <FaLinkedin size={30} className=" hover:text-green-500 text-white" />
                 </a>
               )}
 
@@ -171,17 +171,17 @@ const PopupAlumniCad = ({ person, close }) => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <FaInstagram size={30} color="white" />
+                  <FaInstagram size={30} className=" hover:text-green-500 text-white "/>
                 </a>
               )}
               {person.social?.twitter && (
                 <a href={person.social?.twitter} target="_blank" rel="noreferrer">
-                  <FaXTwitter size={30} color="white" />
+                  <FaXTwitter size={30} className="hover:text-green-500 text-white" />
                 </a>
               )}
               {person.social?.website && (
                 <a href={person.social?.website} target="_blank" rel="noreferrer">
-                  <FaGlobe className=" hover:bg-green-500" size={30} color="white" />
+                  <FaGlobe className=" hover:text-green-500 text-white" size={30} color="" />
                 </a>
               )}
             </div>

@@ -19,7 +19,7 @@ export default function NotFound() {
                 <div className="contant_box_404">
                   <h3 className="h2">Look like you &apos;re lost</h3>
 
-                  <p>the page you are looking for not avaible!</p>
+                  <p>the page you are looking for not available!</p>
                   <Link href={"/"}>
                     <Button className=" px-2  bg-green-500">Go To Home</Button>
                   </Link>

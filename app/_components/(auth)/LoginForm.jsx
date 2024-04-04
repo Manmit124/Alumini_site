@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Image from "next/image";
 
 const LoginForm = () => {
   const [email, setemail] = useState();
@@ -48,7 +49,7 @@ const LoginForm = () => {
           </Link>
         </div>
 
-        <div className="container flex h-screen w-screen flex-col items-center justify-center  ">
+        <div className="container flex h-screen w-screen   items-center  justify-between ">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               hellow
@@ -131,6 +132,11 @@ const LoginForm = () => {
             </p>
               </Link>
           </div>
+        <div>
+        {/* <div className="w-1/2  my-auto h-full">
+            <Image width={200} height={300} src="/profile/fingerprint-animate-blue.svg" alt="Login image" className="  px-12 my-auto h-full" />
+          </div> */}
+        </div>
         </div>
       </div>
     </>
