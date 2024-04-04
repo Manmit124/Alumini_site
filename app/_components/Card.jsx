@@ -16,7 +16,7 @@ const CardAlumni = ({ Alumini }) => {
               height={120}
               alt="Users image"
               loading="lazy"
-              src={Alumini?.image}
+              src={Alumini?.image ? Alumini?.image :"/profile/placeholder.png"}
               className="     w-full object-cover lg:h-20 md:h-16 h-14 "
             />
           </div>
