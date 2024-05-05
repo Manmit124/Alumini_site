@@ -67,12 +67,11 @@ const page = () => {
   ]
   return (
     <div className='lg:px-9 px-4 mt-16'>
-    {/* <Meta title="Dashboard | Alumni NITP" />
-    <PageHeading heading='Alumni' heading1="Dashboard" /> */}
+    
     <h1 className='font-extrabold text-transparent lg:text-6xl md:text-5xl text-4xl bg-clip-text bg-gradient-to-r from-blue-100  to-sky-600 large-heading ml-10'>Alumni Dashboard</h1>
 
     <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-5">
-      <div className="text-lg font-medium">Welcome to Alumni GCOEC</div>
+      <div className="text-lg font-medium ">Welcome to Alumni GCOEC</div>
       <div className="flex gap-3">
         {/* <button disabled={loading} onClick={async () => {
           if (isSubscribed) {

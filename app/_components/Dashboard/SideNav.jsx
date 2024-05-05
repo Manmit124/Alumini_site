@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 const SideNav = () => {
   const [show, setShow] = useState(false);
   const pathname=usePathname();
+  console.log(pathname)
 
   const links = [
     {
@@ -33,12 +34,12 @@ const SideNav = () => {
     {
       name: "Share Experience",
       icon: <GiGiftOfKnowledge className="inline-block" />,
-      path: "/share-experience",
+      path: "/share-experience?tab=new-posts",
     },
     {
       name: "Write a Blog",
       icon: <FaPen className="inline-block" />,
-      path: "/write-a-blog",
+      path: "/write-a-blog?tab=new-post",
     },
     {
       name: "Post a Job",
@@ -48,7 +49,7 @@ const SideNav = () => {
     {
       name: "Post an Internship",
       icon: <MdEngineering className="inline-block" />,
-      path: "/post-an-internship",
+      path: "/post-an-internship?tab=post-internship",
     },
     {
       name: "Give Testimonial",
@@ -89,7 +90,7 @@ const SideNav = () => {
             >
               {/* {({ isActive }) => ( */}
               
-                <button onClick={() => setShow(false)} className={`text-gray-300 w-full flex items-center gap-3 font-medium text-start px-4 py-2 rounded-xl ${pathname===link.path ? "bg-sky-500 text-gray-900 rounded-xl" : "hover:bg-gray-700"} `}>
+                <button onClick={() => setShow(false)} className={`text-gray-300 w-full flex items-center gap-3 font-medium text-start px-4 py-2 rounded-xl ${pathname==link.path ? "bg-sky-500 text-gray-900 rounded-xl" : "hover:bg-gray-700"} `}>
                   {link.icon} {link.name}
                 </button>
               {/* )} */}
