@@ -4,7 +4,7 @@ export function middleware(request) {
 
     const currentUser = request.cookies.get('next-auth.session-token')?.value
 
-    // console.log(currentUser)
+    console.log(currentUser)
     
    
     // if (currentUser && !request.nextUrl.pathname.startsWith('/dashboard')) {
