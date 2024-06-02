@@ -42,6 +42,7 @@ const Page = () => {
     // console.log(selectedProject);
   };
 
+  const filteredAlumnis=Branch ? Aluminis.filter((alumni)=>alumni.Branch ===Branch) : Aluminis;
   // const [searchParams, setSearchParams] = useSearchParams({
   //   role: null,
   //   page: 1,
@@ -109,7 +110,7 @@ const Page = () => {
                   Branch === dept.value && "button-secondary"
                 }`}
               >
-                {dept.value}
+                {dept.name}
               </Button>
             ))}
           </div>
@@ -124,8 +125,8 @@ const Page = () => {
           />
         )}
         <div className="   lg:px-10 md:p-8 p-6 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-          {Aluminis &&
-            Aluminis?.map((Alumini, index) => (
+          {filteredAlumnis &&
+            filteredAlumnis?.map((Alumini, index) => (
               <>
                 {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
                 <div

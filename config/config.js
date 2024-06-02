@@ -114,28 +114,28 @@
   
    const Branches = [
      {
-         name: 'Computer Science & Engg.',
+         name: 'CSE',
          value: 'CSE'
      },
      {
-         name: 'Electronics & Communication Engg.',
-         value: 'ECE'
+         name: 'ENTC',
+         value: 'ENTC'
      },
     {
-        name: 'Electrical Engineering',
-        value: 'EE'
+        name: 'EE',
+        value: 'Electrical'
     },
     {
-        name: 'Mechanical Engineering',
-        value: 'ME'
+        name: 'ME',
+        value: 'Mechanical'
     },
     {
-        name: 'Civil Engineering',
+        name: 'Civil',
         value: 'CE'
     },
     {
-        name: 'Instrumentation',
-        value: 'Instru.'
+        name: 'Instru',
+        value: 'Instr'
     }
   
 ]
