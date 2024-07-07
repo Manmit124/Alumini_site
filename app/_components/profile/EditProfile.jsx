@@ -11,7 +11,26 @@ import { FaGlobe, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { signOut, useSession } from "next-auth/react";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+const fetchUserProfile = async () => {
+  const response = await fetch("/api/profile");
+  if (!response.ok) {
+    throw new Error("Failed to fetch profile");
+  }
+  return response.json();
+};
+const updateUserProfile = async (formData) => {
+  const response = await fetch("/api/profile", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update profile");
+  }
+  return response.json();
+};
 const EditProfile = () => {
   const [formData, setformData] = useState({
     FullName: "",
@@ -40,49 +59,79 @@ const EditProfile = () => {
   const userData = session.data?.user;
   const { status } = session;
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    console.log(session);
-    if (status === "authenticated") {
-      fetchUserProfile();
+  const { data: profileData, isLoading } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: fetchUserProfile,
+    enabled: status === "authenticated",
+    staleTime:Infinity,
+    placeholderData: () => {
+      return queryClient.getQueryData(["userProfile"]) || {
+        FullName: "Loading...",
+        GraduationYear: "Loading...",
+        MobileNumber: "Loading...",
+        Degree: "Loading...",
+        Branch: "Loading...",
+        image: "",
+        streetAddress: "Loading...",
+        postalCode: "Loading...",
+        city: "Loading...",
+        country: "Loading...",
+        Company: "Loading...",
+        designation: "Loading...",
+        WorkExperience: [{ Job: "Loading...", Company: "Loading...", Industry: "Loading...", startEndYear: "Loading..." }],
+        bio: "Loading...",
+        social: {
+          linkedin: "Loading...",
+          twitter: "Loading...",
+          instagram: "Loading...",
+          website: "Loading...",
+        },
+      }
     }
-  }, [status]);
+   
+  });
+
+  const updateProfileMutation = useMutation({
+    mutationFn: updateUserProfile,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["userProfile"]);
+      router.push("/profile");
+      toast({
+        title: "Your Profile has been updated successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Please try again",
+        variant: "destructive",
+      });
+    },
+  });
+  useEffect(() => {
+    if (profileData) {
+      setformData((prevData) => ({ ...prevData, ...profileData }));
+    }
+  }, [profileData]);
+
+  // useEffect(() => {
+  //   console.log(session);
+  //   if (status === "authenticated") {
+  //     fetchUserProfile();
+  //   }
+  // }, [status]);
 
   const handleProfilesubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("/api/profile", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.ok) {
-      router.push("/profile");
-
-      return toast({
-        title: "Your Profile has been updated successfully",
-        variant: "outline",
-      });
-    } else {
-      return toast({
-        title: "Please try again",
-        variant: "desctructive",
-      });
-    }
+    updateProfileMutation.mutate(formData);
   };
-  const fetchUserProfile = async () => {
-    try {
-      const response = await fetch("/api/profile");
-      if (response.ok) {
-        const data = await response.json();
-        setformData((prevData) => ({ ...prevData, ...data }));
-      } else {
-        console.log("Eror fetching the upldated image ");
-      }
-    } catch (error) {
-      console.error("Error fetching updated profile data:", error);
-    }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+
   const handleAddExperience = () => {
     setformData((prevState) => ({
       ...prevState,
@@ -110,7 +159,7 @@ const EditProfile = () => {
     }));
   };
 
-  console.log(formData);
+
   const handleSocialChange = (event) => {
     const { name, value } = event.target;
 
@@ -123,11 +172,9 @@ const EditProfile = () => {
       },
     }));
   };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setformData((prevData) => ({ ...prevData, [name]: value }));
-  };
-  console.log(formData.Branch);
+
+ 
+
 
   return (
     <div className=" phone:mt-12 max-phone:mt-24 py-4 w-11/12 mx-auto">

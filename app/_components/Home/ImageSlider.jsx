@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 const ImageSlider = () => {
   // const [user, setuser] = useState();
 
-  const { data, loading } = Userprofile();
+  const { data, isLoading } = Userprofile();
   const session = useSession();
   const userData = session.data?.user;
   const { status } = session;

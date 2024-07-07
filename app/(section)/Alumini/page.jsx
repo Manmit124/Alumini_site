@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const [Aluminis, setAluminis] = useState([]);
-  const { loading, data } = Userprofile();
+  // const { loading, data } = Userprofile();
   useEffect(() => {
     fetchAlumini();
   }, []);

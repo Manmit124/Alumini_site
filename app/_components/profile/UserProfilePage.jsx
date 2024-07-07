@@ -4,7 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 const UserProfilePage = () => {
-  const { data, loading } = Userprofile();
+  const { data, isLoading } = Userprofile();
   return (
     <div className=" flex flex-row  gap-x-4  max-w-4xl mx-auto items-center  justify-between  ">
       <div>

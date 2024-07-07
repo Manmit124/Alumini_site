@@ -17,7 +17,7 @@ const Navbar = () => {
   const status = session?.status;
   const userData = session.data?.user;
   let userImage = userData?.image;
-  const { loading, data } = Userprofile();
+  const { data,isLoading } = Userprofile();
   const [menu, setMenu] = useState(false);
   const [popup, setPopup] = useState(-1);
   const pathname=usePathname();

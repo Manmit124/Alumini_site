@@ -3,46 +3,44 @@ import PopupAlumniCad from "@/app/_components/Alumini/PopupAlumniCad";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Branches } from "@/config/config";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 
 const Page = () => {
-  const [loading, setLoading] = useState(false);
   const [Branch, setBranch] = useState(null);
-  const [Aluminis, setAluminis] = useState([]);
   const [currentPopup, setCurrentPopup] = useState(null); // [id, type]
   const [selectedAlumni, setSelectedAlumni] = useState(null);
+  const fetchAlumini = async () => {
+    const response = await fetch("/api/users");
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  };
 
-  useEffect(() => {
-    const fetchAlumini = async () => {
-      setLoading(true)
-      try {
-        const response = await fetch("/api/users");
-        const FetchAlumini = await response.json();
-        setAluminis([]);
-        setAluminis(FetchAlumini);
-        console.log(FetchAlumini);
-      } catch (error) {
-        console.error(error);
-      }finally{
-        setLoading(false);
-      }
-    };
-
-    fetchAlumini();
-  }, []);
+  const {
+    data: Aluminis,
+    isLoading,
+    isError,
+    isPending,
+    error,
+  } = useQuery({
+    queryKey: ["Alumnis"],
+    queryFn: async () => await fetchAlumini(),
+    staleTime: Infinity,
+    refetchInterval: 600000,
+  });
 
   const openModal = (Alumini) => {
     setSelectedAlumni(Alumini);
-    // setIsModalOpen(true);
-    // console.log("cliked");
-    // console.log(isModalOpen);
-    // console.log(selectedProject);
   };
 
-  const filteredAlumnis=Branch ? Aluminis.filter((alumni)=>alumni.Branch ===Branch) : Aluminis;
+  const filteredAlumnis = Branch
+    ? Aluminis.filter((alumni) => alumni.Branch === Branch)
+    : Aluminis;
   // const [searchParams, setSearchParams] = useSearchParams({
   //   role: null,
   //   page: 1,
@@ -115,9 +113,7 @@ const Page = () => {
             ))}
           </div>
         </div>
-        {loading&& (
-        <h1 className=" text-white">Loading.....</h1>
-        )}
+        {isLoading && <h1 className=" text-white">Loading.....</h1>}
         {selectedAlumni !== null && (
           <PopupAlumniCad
             person={selectedAlumni}
@@ -128,7 +124,6 @@ const Page = () => {
           {filteredAlumnis &&
             filteredAlumnis?.map((Alumini, index) => (
               <>
-                {/* <div key={index} className=" Alumini-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] gap-x-2  flex flex-row w-[20rem]  h-[8rem] mt-2 "> */}
                 <div
                   onClick={() => (openModal(Alumini), setCurrentPopup(index))}
                   key={Alumini?._id}
@@ -182,12 +177,6 @@ const Page = () => {
                             {Alumini?.bio.slice(0, 80)}
                           </p>
                         )}
-
-                        {/* <p className=" text-white   text-sm t">
-                          {" "}
-                          Passionate Fullstack web developer is with great
-                          vision to change my life and world also
-                        </p> */}
                       </div>
                     </div>
                   </div>

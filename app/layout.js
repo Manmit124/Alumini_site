@@ -3,6 +3,8 @@ import "./globals.css";
 import AuthProvider from "@/utils/AuthProvider";
 import StarCanvas from "./_components/Home/StarBackground";
 import Footer from "./_components/Footer";
+import ReactQueryProvider from "@/utils/ReactQueryProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,13 +16,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[#000000] bg-[radial-gradient(#cccccc33_1px,#000000_1px)] bg-[size:40px_50px]  `}>
-        <AuthProvider>
-        {/* <StarCanvas/> */}
-        {children}
-      
-        </AuthProvider>
-      
+      <body
+        className={`${inter.className} bg-[#000000] bg-[radial-gradient(#cccccc33_1px,#000000_1px)] bg-[size:40px_50px]  `}
+      >
+        <ReactQueryProvider>
+          <AuthProvider>
+          <Toaster/>
+            {/* <StarCanvas/> */}
+            {children}
+          </AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

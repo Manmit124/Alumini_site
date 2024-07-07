@@ -13,13 +13,13 @@ import {
 } from "react-icons/fa6";
 
 const UserCard = () => {
-  const { data, loading } = Userprofile();
+  const { data, isLoading } = Userprofile();
   const [showMore, setShowMore] = useState(false);
   const toggleBio = () => {
     setShowMore(!showMore);
   };
   const truncatedBio = showMore ? data?.bio : data?.bio?.slice(0, 80);
-  if(loading){
+  if(isLoading){
     return <h1>...Loading</h1>
   }
 
